@@ -1,0 +1,25 @@
+body {
+    padding-top: 100px;
+}
+ 
+.form-signup, .form-signin {
+    width: 400px;
+    margin: 0 auto;
+}
+.table-posts th {
+  text-align: center;
+}
+.table-center {
+  text-align: center;
+  width: 80%;
+  height: auto;
+}
+#wrap {
+  width: 80%;
+  margin: 42px 1px 1px 50px;
+}
+.login-form {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
