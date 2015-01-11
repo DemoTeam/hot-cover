@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,6 +57,14 @@
                         {{ link_to_route('posts.create', 'Post new') }}
                     </li>
                 </ul>
+		<ul class="nav pull-right navbar-nav">
+            	  @if(!Auth::check())
+              		<li>{{ HTML::link('signup', 'Sign up') }}</li> 
+              		<li>{{ HTML::link('login', 'Login') }}</li>
+            	  @else
+              		<li>{{ HTML::link('logout', 'Logout') }}</li>
+            	  @endif
+          	</ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>

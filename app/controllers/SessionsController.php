@@ -37,7 +37,7 @@ class SessionsController extends \BaseController {
     $attempt = Auth::attempt( array('email' => $input['email'], 'password' => $input['password']) );
     
     if($attempt) {
-      return Redirect::to('/users');
+      return Redirect::to('/posts');
     } else {
       return Redirect::to('login');
     }

@@ -23,7 +23,7 @@
   <body style="padding-top: 50px">
     <div class="container">
         @if (Session::has('message'))
-            <div class="flash alert">
+            <div class="flash bg-danger alert">
                 <p>{{ Session::get('message') }}</p>
             </div>
         @endif
