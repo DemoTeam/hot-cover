@@ -68,7 +68,8 @@ class PostController extends BaseController {
   public function show($id)
   {
     $post = Post::find($id);
-    return View::make('posts.show', compact('post'));
+    $posts = Post::all();
+    return View::make('posts.show', compact(array('post', 'posts')));
   }
 
   /**
