@@ -49,7 +49,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'forge',
+			'database'  => 'hot-cover',
 			'username'  => 'root',
 			'password'  => '123456',
 			'charset'   => 'utf8',

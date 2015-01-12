@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
     <h2 class="title">Sign Up</h2>
-    {{ Form::open(array('action' => 'UserController@post_create')) }} 
+    {{ Form::open(array('action' => 'UserController@post_create', 'files'=>true)) }} 
         <ul>
             @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -30,7 +30,12 @@
         </tr>
         <tr>
             <td colspan="2">
-        {{ Form::submit('Register', array('class'=>'btn btn-large btn-primary btn-block'))}}
+               {{ Form::file('avatar_url','',array('id'=>'','class'=>'btn btn-default btn-file')) }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+               {{ Form::submit('Register', array('class'=>'btn btn-large btn-primary btn-block'))}}
             </td>
         </tr>
     </table>
