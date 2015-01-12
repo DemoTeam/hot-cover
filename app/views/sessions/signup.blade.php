@@ -30,6 +30,7 @@
         </tr>
         <tr>
             <td colspan="2">
+                {{ Form::label('avatar_url','File',array('id'=>'','class'=>'')) }}
                {{ Form::file('avatar_url','',array('id'=>'','class'=>'btn btn-default btn-file')) }}
             </td>
         </tr>

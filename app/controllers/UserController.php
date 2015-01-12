@@ -130,17 +130,27 @@ class UserController extends BaseController {
 
     $validator = Validator::make(Input::all(), User::$rules);
     if ($validator->passes()) {
+        $destinationPath = '';
+        $filename        = '';
 
-      $user = new User;
-      $user->name = Input::get('name');
-      $user->email = Input::get('email');
-      $user->password = Hash::make(Input::get('password'));
+        if (Input::hasFile('avatar_url')) {
+            $file            = Input::file('avatar_url');
+            $destinationPath = public_path().'/img/';
+            $filename        = str_random(6) . '_' . $file->getClientOriginalName();
+            $uploadSuccess   = $file->move($destinationPath, $filename);
+        }
 
-      $user->save();
+        $user = new User;
+        $user->name = Input::get('name');
+        $user->email = Input::get('email');
+        $user->avatar_url = '/img/' . $filename;
+        $user->password = Hash::make(Input::get('password'));
 
-      return Redirect::to('login')->with('message', 'Thanks for registering!');
-      } else {
-          return Redirect::to('signup')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
-      }
+        $user->save();
+
+        return Redirect::to('login')->with('message', 'Thanks for registering!');
+    } else {
+        return Redirect::to('signup')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+    }
   }
 }

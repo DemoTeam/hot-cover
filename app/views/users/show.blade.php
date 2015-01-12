@@ -7,6 +7,9 @@
           <th>Name: {{ $user->name }}</th>
         </tr>
         <tr>
+          <th><img src="{{ asset($user->avatar_url) }}" width="150" height="150"></th>
+        </tr>
+        <tr>
           <th>Email: {{ $user->email }}</th>
         </tr>
     </table>
