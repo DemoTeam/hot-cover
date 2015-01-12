@@ -24,3 +24,9 @@ Route::get('signup', 'SessionsController@signup');
 Route::post('post_create', 'UserController@post_create');
 Route::resource('sessions', 'SessionsController');
 Route::resource('posts', 'PostController');
+
+// Admin routes
+Route::resource('admin', 'admin\AdminController');
+Route::group(array('prefix' => 'admin'), function() {
+  Route::resource('users', 'Controllers\admin\UserController');
+});
