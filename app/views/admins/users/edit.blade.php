@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.admin')
 <h1>Create User</h1>
 @section('content')
 {{ Form::model($user, array('method' => 'PATCH', 'route' =>

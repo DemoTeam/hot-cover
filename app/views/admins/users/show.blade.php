@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.admin')
 <h3>Detail {{$user->name}}</h3>
 @section('content')
 <p>{{ link_to_route('users.index', 'Back to index') }}</p>

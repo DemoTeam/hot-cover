@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.visitor')
 <h1>Create Post</h1>
 @section('content')
 {{ Form::model($post, array('method' => 'PATCH', 'route' =>
