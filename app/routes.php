@@ -26,7 +26,14 @@ Route::resource('sessions', 'SessionsController');
 Route::resource('posts', 'PostController');
 
 // Admin routes
-Route::resource('admin', 'admin\AdminController');
+// Route::resource('admin', 'admin\AdminController');
 Route::group(array('prefix' => 'admin'), function() {
-  Route::resource('users', 'Controllers\admin\UserController');
+  Route::resource('users', 'admin\UserController');
+});
+Route::get('admin', 'admin\AdminController@index');
+
+Route::filter('checkAdmin', function(){
+  if(Auth::user()->type != "Admin"){
+    return Redirect::to('/posts')->with('message', 'Your are not Admin!');
+  }
 });

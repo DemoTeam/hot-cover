@@ -2,33 +2,11 @@
 namespace admin;
 use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Controller;
-class UserController extends \BaseController {
-  protected $layout = "layout";
-
-   public function __construct() {
-     $this->beforeFilter('csrf', array('on'=>'post'));
-   }
-    /*
-    |--------------------------------------------------------------------------
-    | Default Home Controller
-    |--------------------------------------------------------------------------
-    |
-    | You may wish to use controllers instead of, or in addition to, Closure
-    | based routes. That's great! Here is an example controller method to
-    | get you started. To route to this controller, just add the route:
-    |
-    |   Route::get('/', 'HomeController@showWelcome');
-    |
-    */
-
-    // public function showWelcome()
-    // {
-    //     return View::make('hello');
-    // }
+class UserController extends BaseAdminController {
   public function index()
   {
     $users = User::paginate(2);
-    return View::make('users.index', compact('users'));
+    return View::make('admins/users.index', compact('users'));
   }
   /**
    * Show the form for creating a new resource.
@@ -37,7 +15,7 @@ class UserController extends \BaseController {
    */
   public function create()
   {
-    return View::make('users.create');
+    return View::make('admins/users.create');
   }
 
   /**
@@ -54,9 +32,9 @@ class UserController extends \BaseController {
     {
       $user->password = Hash::make(Input::get('password'));
       User::create($input);
-      return Redirect::route('users.index');
+      return Redirect::route('admins/users.index');
     }
-    return Redirect::route('users.create')
+    return Redirect::route('admins/users.create')
         ->withInput()
         ->withErrors($validation)
         ->with('message', 'There were validation errors.');
@@ -71,7 +49,7 @@ class UserController extends \BaseController {
   public function show($id)
   {
     $user = User::find($id);
-    return View::make('users.show', compact('user'));
+    return View::make('admins/users.show', compact('user'));
   }
 
   /**
@@ -85,9 +63,9 @@ class UserController extends \BaseController {
         $user = User::find($id);
         if (is_null($user))
         {
-            return Redirect::route('users.index');
+            return Redirect::route('admins/users.index');
         }
-        return View::make('users.edit', compact('user'));
+        return View::make('admins/users.edit', compact('user'));
     }
 
   /**
@@ -105,9 +83,9 @@ class UserController extends \BaseController {
         $user = User::find($id);
         $user->password = Hash::make(Input::get('password'));
         $user->update($input);
-        return Redirect::route('users.show', $id);
+        return Redirect::route('admins/users.show', $id);
     }
-    return Redirect::route('users.edit', $id)
+    return Redirect::route('admins/users.edit', $id)
       ->withInput()
       ->withErrors($validation)
       ->with('message', 'There were validation errors.');
@@ -123,7 +101,7 @@ class UserController extends \BaseController {
   {
     $user = User::find($id);
     $user->delete();
-    return Redirect::route('users.index')
+    return Redirect::route('admins/users.index')
       ->with("message", " deleted");
   }
 

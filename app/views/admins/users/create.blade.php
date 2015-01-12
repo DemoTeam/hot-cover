@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.admin')
 <h1>Create post</h1>
 @section('content')
 {{ Form::open(array('route' => 'users.store')) }}

@@ -39,19 +39,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">All Video</a>
+                <a class="navbar-brand" href="/posts">Home</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Hot views</a>
+                        <a href="#">Hot Covers</a>
                     </li>
                     <li>
-                        <a href="#">Rate Video</a>
+                        <a href="#">Hot Cosplay</a>
                     </li>
                     <li>
-                        <a href="#">New Video</a>
+                        <a href="#">Questions & Answers</a>
                     </li>
                     <li>
                         {{ link_to_route('posts.create', 'Post new') }}
@@ -62,6 +62,9 @@
               		<li>{{ HTML::link('signup', 'Sign up') }}</li> 
               		<li>{{ HTML::link('login', 'Login') }}</li>
             	  @else
+                    @if(Auth::user()->type == "Admin")
+                        <li>{{ HTML::link('/admin', 'Admin Page') }}</li>
+                    @endif
               		<li>{{ HTML::link('logout', 'Logout') }}</li>
             	  @endif
           	</ul>
@@ -73,7 +76,16 @@
 
     <!-- Page Content -->
     <div class="container">
-        @yield('content')
+        <div>
+            @if (Session::has('message'))
+                <div class="flash bg-danger alert">
+                    <p>{{ Session::get('message') }}</p>
+                </div>
+            @endif
+        </div>
+        <div>
+            @yield('content')
+        </div>
         <hr>
 
         <!-- Footer -->

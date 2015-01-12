@@ -8,10 +8,13 @@ class BaseAdminController extends \BaseController {
 
    public function __construct() {
      $this->beforeFilter('csrf', array('on'=>'post'));
+     $this->beforeFilter('auth');
+     $this->beforeFilter('checkAdmin');
    }
-  // public function index()
-  // {
-  //   $users = User::paginate(2);
-  //   return View::make('admins/admin.index', compact("users"));
-  // }
+
+   // public function checkAdmin(){
+   //   if(Auth::user()->type != "Admin"){
+   //     return Redirect::to("/posts")->with('message', 'Your are not Admin!');
+   //   }
+   // }
 }
