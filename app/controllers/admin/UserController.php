@@ -2,6 +2,7 @@
 namespace admin;
 use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Controller;
+use \User as User;
 class UserController extends BaseAdminController {
   public function index()
   {

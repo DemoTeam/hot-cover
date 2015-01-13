@@ -10,6 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+//Route::model('posts','Post');
 Route::get('/', function()
 {
   $users = User::all();

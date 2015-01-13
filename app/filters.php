@@ -70,6 +70,15 @@ Route::filter('guest', function()
 	if (Auth::check()) return Redirect::to('/');
 });
 
+Route::filter('correctUser', function($route,$response,$model)
+{
+	$id = Route::input(strtolower(str_plural($model)));
+	$user = $model::find($id)->user_id;
+  if(!Helper::correctUser($id, $user)){
+    return Redirect::route('posts.index')->with('message','Not correct user!');
+  }
+});
+
 /*
 |--------------------------------------------------------------------------
 | CSRF Protection Filter
@@ -80,9 +89,9 @@ Route::filter('guest', function()
 | session does not match the one given in this request, we'll bail.
 |
 */
-
 Route::filter('csrf', function()
 {
+	$token = Request::ajax() ? Request::header('X-CSRF-Token') : Input::get('_token');
 	if (Session::token() !== Input::get('_token'))
 	{
 		throw new Illuminate\Session\TokenMismatchException;

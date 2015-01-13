@@ -1,5 +1,4 @@
 @extends('layouts.visitor')
-<h1>Create Post</h1>
 @section('content')
 {{ Form::model($post, array('method' => 'PATCH', 'route' =>
  array('posts.update', $post->id))) }}
@@ -14,19 +13,22 @@
     </tr>
     <tr>
         <td>
-            {{ Form::label('video_url', 'Video Url:') }}
+            {{ Form::label('content', 'Content Url:') }}
         </td>
         <td>
-            {{ Form::text('video_url') }}
+            {{ Form::text('content') }}
         </td>
     </tr>
     <tr>
         <td>
-            {{ Form::label('content', 'Comment:') }}
+            {{ Form::label('description', 'Description:') }}
         </td>
         <td>
-            {{ Form::textarea('content') }}
+            {{ Form::textarea('description') }}
         </td>
+        {{ Form::hidden('user_id', Auth::user()->id) }}
+        {{ Form::hidden('rate', 0) }}
+        {{ Form::hidden('status', "New") }}
     </tr>
     <tr>
         <td colspan="2">
