@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,30 +13,22 @@
     <title>Hot videos</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/star-rating.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap-markdown.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/modern-business.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/metro.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{ asset('css/1-col-portfolio.css') }}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <!-- jQuery -->
-    <script src="{{ asset('js/jquery.js') }}"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/star-rating.js') }}"></script>
 </head>
 
 <body>
-
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -47,11 +40,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                {{ link_to_action('IndexController@index', 'Home', array(), array('class' => 'navbar-brand')) }}
+                <a class="navbar-brand" href="/posts">Home</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Hot Covers</a>
+                    </li>
+                    <li>
+                        <a href="#">Hot Cosplay</a>
+                    </li>
+                    <li>
+                        <a href="#">Questions & Answers</a>
+                    </li>
                     <li>
                         {{ link_to_route('posts.create', 'Post new') }}
                     </li>
@@ -105,7 +107,6 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-markdown.js') }}"></script>
 
 </body>
 
