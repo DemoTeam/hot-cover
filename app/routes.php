@@ -10,14 +10,8 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-//Route::model('posts','Post');
-Route::get('/', function()
-{
-  $users = User::all();
 
-  return View::make('users')->with('users', $users);
-})->before('auth');
-
+Route::get('/', 'IndexController@index');
 Route::resource('users', 'UserController');
 Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
@@ -25,6 +19,7 @@ Route::get('signup', 'SessionsController@signup');
 Route::post('post_create', 'UserController@post_create');
 Route::resource('sessions', 'SessionsController');
 Route::resource('posts', 'PostController');
+Route::resource('questions', 'QuestionController');
 
 // Admin routes
 // Route::resource('admin', 'admin\AdminController');

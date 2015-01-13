@@ -30,8 +30,9 @@
         </tr>
         <tr>
             <td colspan="2">
-                {{ Form::label('avatar_url','File',array('id'=>'','class'=>'')) }}
-               {{ Form::file('avatar_url','',array('id'=>'','class'=>'btn btn-default btn-file')) }}
+                {{ Form::label('avatar_url','Avatar',array('id'=>'','class'=>'')) }}
+               <span class="btn btn-file">{{ Form::file('avatar_url',array('id'=>'avatar_url','class'=>'')) }}</span>
+                <img src="#" id="avatar_preview" style="display:none;width:200px;height:200px;"/>
             </td>
         </tr>
         <tr>
@@ -41,4 +42,23 @@
         </tr>
     </table>
     {{ Form::close() }}
+
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#avatar_preview').show();
+            $('#avatar_preview').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#avatar_url").on("change", function() {
+   readURL(this);
+});
+</script>
 @stop
