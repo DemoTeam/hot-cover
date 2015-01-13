@@ -1,28 +1,10 @@
 <?php
+namespace admin;
+use Illuminate\Support\Facades\View;
+use Illuminate\Routing\Controller;
+use \Post as Post;
+class PostController extends BaseAdminController {
 
-class PostController extends BaseController {
-   public function __construct() {
-     $this->beforeFilter('csrf', array('on'=>'post'));
-     $this->beforeFilter('auth', array('only'=>array('create', 'edit', 'store')));
-     $this->beforeFilter('correctUser:Post',array('only'=>array('edit')));
-   }
-    /*
-    |--------------------------------------------------------------------------
-    | Default Home Controller
-    |--------------------------------------------------------------------------
-    |
-    | You may wish to use controllers instead of, or in addition to, Closure
-    | based routes. That's great! Here is an example controller method to
-    | get you started. To route to this controller, just add the route:
-    |
-    |   Route::get('/', 'HomeController@showWelcome');
-    |
-    */
-
-    // public function showWelcome()
-    // {
-    //     return View::make('hello');
-    // }
   public function index()
   {
     $posts = Post::paginate(3);
@@ -67,8 +49,8 @@ class PostController extends BaseController {
   public function show($id)
   {
     $post = Post::find($id);
-      $posts = Post::all();
-      return View::make('posts.show', compact(array('post', 'posts')));
+    $posts = Post::all();
+    return View::make('posts.show', compact(array('post', 'posts')));
   }
 
   /**
@@ -95,24 +77,18 @@ class PostController extends BaseController {
    */
   public function update($id)
   {
-    $post = Post::find($id);
-    if (Request::ajax()) {
-      $post->rate = Input::get('rate');
-      $post->update();
-      return json_encode("ok");
-    }else{
-      $input = Input::all();
-      $validation = Validator::make($input, Post::$rules);
-      if ($validation->passes())
-      {
-          $post->update($input);
-          return Redirect::route('posts.show', $id);
-      }
-      return Redirect::route('posts.edit', $id)
-        ->withInput()
-        ->withErrors($validation)
-        ->with('message', 'There were validation errors.');
-      }
+    $input = Input::all();
+    $validation = Validator::make($input, Post::$rules);
+    if ($validation->passes())
+    {
+        $post = Post::find($id);
+        $post->update($input);
+        return Redirect::route('posts.show', $id);
+    }
+    return Redirect::route('posts.edit', $id)
+      ->withInput()
+      ->withErrors($validation)
+      ->with('message', 'There were validation errors.');
     }
 
   /**
@@ -129,3 +105,4 @@ class PostController extends BaseController {
       ->with("message", " deleted");
   }
 }
+

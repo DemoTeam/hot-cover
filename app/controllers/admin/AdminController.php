@@ -2,7 +2,7 @@
 namespace admin;
 use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Controller;
-
+use \User as User;
 class AdminController extends BaseAdminController {
   protected $layout = "layouts.admin";
   public function index()

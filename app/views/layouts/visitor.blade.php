@@ -13,7 +13,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/star-rating.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('css/1-col-portfolio.css') }}" rel="stylesheet">
 
@@ -23,7 +23,12 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- jQuery -->
+    <script src="{{ asset('js/jquery.js') }}"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/star-rating.js') }}"></script>
 </head>
 
 <body>
@@ -100,13 +105,6 @@
 
     </div>
     <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="{{ asset('js/jquery.js') }}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
 </body>
 
 </html>
