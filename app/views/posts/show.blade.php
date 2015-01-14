@@ -5,8 +5,8 @@
 <div class="container">
 <div class="row">
 <div class="col-sm-7 col-md-8">
-  <div>{{ $post->title}}</div>
-    <iframe  src="<?= $post->content ?>" width="100%" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  <div><h2>{{ $post->title}}</h2></div>
+    <iframe  src="{{ViewHelper::convertUrl($post->content)}}" width="100%" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 <hr>
 <!-- like -->
 <div class="rateWrapper"><span class="like rate rateUp" id="{{$post->id}}" data-item="{{$post->id}}">
@@ -20,7 +20,7 @@
 <h3>Related video</h3>
   @foreach($posts as $p)
     <div class="wowload fadeInRight">
-	<iframe  class="embed-responsive-item" src="<?= $p->content ?>" width="200px" height="150" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>		
+	<iframe  class="embed-responsive-item" src="{{ViewHelper::convertUrl($post->content)}}" width="200px" height="150" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>		
 	<div>{{ link_to_route('posts.show', $p->title, array($p->id)) }}</div>
     </div>    
   @endforeach

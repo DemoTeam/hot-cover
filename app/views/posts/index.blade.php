@@ -8,7 +8,10 @@
             <div class="col-lg-12">
                 <h1 class="page-header">Page Heading
                     <small>Secondary Text</small>
-                </h1>
+                    <div class="text-right">
+                        {{ link_to_action('PostController@leech_photo', 'Leech photo', array(), array('class' => 'btn btn-success')) }}
+                        {{ link_to_action('PostController@create', 'Create new post', array(), array('class' => 'btn btn-primary')) }}
+                    </div>
             </div>
         </div>
         <!-- /.row -->
@@ -18,7 +21,7 @@
           @foreach($posts as $post)
             <div class="row">
                 <div class="col-md-7">
-                    <iframe align="center" width="600px" height="300px" src="<?= $post->content ?>"  
+                    <iframe align="center" width="600px" height="300px" src="{{ViewHelper::convertUrl($post->content)}}"  
       frameborder="yes" scrolling="yes" name="myIframe" id="myIframe"> </iframe>
                 </div>
                 <div class="col-md-5">

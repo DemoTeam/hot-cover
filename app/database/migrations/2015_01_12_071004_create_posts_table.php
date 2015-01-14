@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration {
           $table->text('content');
           $table->text('description');
           $table->float('rate');
-          $table->integer('status');
+          $table->string('status');
           $table->timestamps();
        });
   }
