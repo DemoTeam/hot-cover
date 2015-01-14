@@ -147,7 +147,7 @@ class UserController extends BaseController {
         $user->password = Hash::make(Input::get('password'));
 
         $user->save();
-
+        Auth::attempt( array('email' => $user->email, 'password' => Input::get('password')) );
         return Redirect::to('login')->with('message', 'Thanks for registering!');
     } else {
         return Redirect::to('signup')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
