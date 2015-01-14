@@ -20,7 +20,10 @@ Route::post('post_create', 'UserController@post_create');
 Route::resource('sessions', 'SessionsController');
 Route::resource('posts', 'PostController');
 Route::resource('questions', 'QuestionController');
-
+// like routes
+Route::post('like', 'LikeController@like');
+Route::get('like', 'LikeController@like');
+Route::post('disLike', 'LikeController@disLike');
 // Admin routes
 // Route::resource('admin', 'admin\AdminController');
 Route::group(array('prefix' => 'admin'), function() {

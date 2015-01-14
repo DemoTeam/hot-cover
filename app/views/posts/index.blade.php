@@ -23,13 +23,16 @@
                 </div>
                 <div class="col-md-5">
                     <h3>{{ $post->title }}</h3>
-                    <h6><input id="input-rating" class="rating" value="<?= $post->rate ?>" data-min="0" data-max="5" data-step="0.5" data-stars=5 
-    data-symbol="&#xe005;" data-default-caption="{rating} hearts" data-star-captions="{}"></h6>
-                    <p>{{ $post->description }}</p>
+                    <!-- like -->
+                    <div class="rateWrapper"><span class="like rate rateUp" id="{{$post->id}}" data-item="{{$post->id}}">
+                    <span class="rateUpN">{{$post->true_likes()->count()}}</span></span>
+                    <span class="disLike rate rateDown" data-item="{{$post->id}}">
+                    <span class="rateDownN">{{$post->disLikes()->count()}}</span></span></div>
+                    <!-- end like -->
+                    <h5>{{ $post->description }}</h5>
                     {{ link_to_route('posts.show', 'View Video', array($post->id), array('class' => 'btn btn-primary')) }}<span class="glyphicon glyphicon-chevron-right"></span>
                 </div>
             </div>
-            <hr>
           @endforeach
         @else
           There are no posts

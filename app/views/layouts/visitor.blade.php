@@ -16,6 +16,7 @@
     <link href="{{ asset('css/star-rating.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-markdown.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/modern-business.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/like_and_dislike.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{ asset('css/1-col-portfolio.css') }}" rel="stylesheet">
@@ -53,10 +54,19 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
+                        {{ link_to_route('posts.index', 'Videos') }}
+                    </li>
+                    <li>
+                        {{ link_to_route('posts.create', 'Images') }}
+                    </li>
+                    <li>
+                        {{ link_to_route('posts.create', "Your's posts") }}
+                    </li>
+                    <li>
                         {{ link_to_route('posts.create', 'Post new') }}
                     </li>
                 </ul>
-		<ul class="nav pull-right navbar-nav">
+		    <ul class="nav pull-right navbar-nav">
             	  @if(!Auth::check())
               		<li>{{ HTML::link('signup', 'Sign up') }}</li> 
               		<li>{{ HTML::link('login', 'Login') }}</li>
@@ -64,6 +74,7 @@
                     @if(Auth::user()->type == "Admin")
                         <li>{{ HTML::link('/admin', 'Admin Page') }}</li>
                     @endif
+                    <li>{{ HTML::link('porfile', Auth::user()->name) }}</li>
               		<li>{{ HTML::link('logout', 'Logout') }}</li>
             	  @endif
           	</ul>
@@ -105,6 +116,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/like_and_dislike.js') }}"></script>
     <script src="{{ asset('js/bootstrap-markdown.js') }}"></script>
 
 </body>
