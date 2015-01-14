@@ -19,7 +19,7 @@
     <link href="{{ asset('css/like_and_dislike.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{{ asset('css/1-col-portfolio.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/1-col-portfolio.css') }}" rel="stylesheet"> -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,40 +42,41 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Home</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 {{ link_to_action('IndexController@index', 'Home', array(), array('class' => 'navbar-brand')) }}
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        {{ link_to_route('posts.index', 'Videos') }}
+                        {{ link_to_route('posts.index', 'Photos / Clips') }}
                     </li>
                     <li>
-                        {{ link_to_route('posts.create', 'Images') }}
-                    </li>
-                    <li>
-                        {{ link_to_route('posts.create', "Your's posts") }}
-                    </li>
-                    <li>
-                        {{ link_to_route('posts.create', 'Post new') }}
+                        {{ link_to_route('questions.index', 'Tech / Q&A') }}
                     </li>
                 </ul>
-		    <ul class="nav pull-right navbar-nav">
+		        <ul class="nav pull-right navbar-nav">
             	  @if(!Auth::check())
               		<li>{{ HTML::link('signup', 'Sign up') }}</li> 
               		<li>{{ HTML::link('login', 'Login') }}</li>
             	  @else
                     @if(Auth::user()->type == "Admin")
-                        <li>{{ HTML::link('/admin', 'Admin Page') }}</li>
+                        <li>{{ HTML::link('/admin', "Admin's Page") }}</li>
                     @endif
-                    <li>{{ HTML::link('porfile', Auth::user()->name) }}</li>
-              		<li>{{ HTML::link('logout', 'Logout') }}</li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{Auth::user()->name}} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i>{{ link_to_route('users.show', 'Profile') }}</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i>{{ link_to_route('users.edit', 'Settings', array(Auth::user()->id)) }}</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            {{ HTML::link('logout', 'Logout') }}<i class="fa fa-fw fa-power-off"></i>
+                        </li>
+                    </ul>
+                </li>
             	  @endif
           	</ul>
             </div>
@@ -112,10 +113,7 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="{{ asset('js/jquery.js') }}"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/like_and_dislike.js') }}"></script>
     <script src="{{ asset('js/bootstrap-markdown.js') }}"></script>
 
