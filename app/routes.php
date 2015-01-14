@@ -17,6 +17,7 @@ Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
 Route::get('signup', 'SessionsController@signup');
 Route::post('post_create', 'UserController@post_create');
+Route::get('leech_photo', 'PostController@leech_photo');
 Route::resource('sessions', 'SessionsController');
 Route::resource('posts', 'PostController');
 Route::resource('questions', 'QuestionController');

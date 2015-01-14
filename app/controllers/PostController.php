@@ -128,4 +128,9 @@ class PostController extends BaseController {
     return Redirect::route('posts.index')
       ->with("message", " deleted");
   }
+
+  public function leech_photo()
+  {
+    return View::make('posts.leech_photo');
+  }
 }
