@@ -27,8 +27,6 @@
             {{ Form::textarea('description') }}
         </td>
         {{ Form::hidden('user_id', Auth::user()->id) }}
-        {{ Form::hidden('rate', 0) }}
-        {{ Form::hidden('status', "New") }}
     </tr>
     <tr>
         <td colspan="2">

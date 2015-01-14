@@ -7,9 +7,12 @@
 <div class="col-sm-7 col-md-8">
   <div>{{ $post->title}}</div>
     <iframe  src="<?= $post->content ?>" width="100%" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-<br />
-<div><h6><input id="input-rating" value="<?= $post->rate ?>" class="rating" data-min="0" data-max="5" data-step="0.5" data-stars=5 
-    data-symbol="&#xe005;" data-default-caption="{rating} hearts" data-star-captions="{}"></h6></div>
+<hr>
+<!-- like -->
+<div class="rateWrapper"><span class="like rate rateUp" id="{{$post->id}}" data-item="{{$post->id}}">
+<span class="rateUpN">{{$post->true_likes()->count()}}</span></span>
+<span class="disLike rate rateDown" data-item="{{$post->id}}"><span class="rateDownN">{{$post->disLikes()->count()}}</span></span></div>
+<!-- end like -->
 <div>{{ $post->title}}</div>
 <div>{{ $post->description}}</div>
 </div>
