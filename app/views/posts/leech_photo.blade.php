@@ -2,7 +2,7 @@
 @section('content')
 <h1>Insert tour photo links and enjoy :)
     <div class="text-right">
-        <a class="btn btn-success glyphicon glyphicon-save" id="saveButton"> Public them</a>
+        <a class="btn btn-success glyphicon glyphicon-save" id="saveButton"> Save to my gallery</a>
         <a class="btn btn-success glyphicon glyphicon-share" id="shareButton"> Public them</a>
         <a class="btn btn-danger glyphicon glyphicon-picture" id="leechButton"> Get them</a>
     </div>

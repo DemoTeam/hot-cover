@@ -3,7 +3,7 @@
 class Post extends Eloquent {
     protected $guarded = array('id');
     protected $fillable = array('title', 'content', 'description', 'rate',
-     'user_id', 'status');
+     'user_id', 'status', 'type', 'category');
 
     public function user()
     {
