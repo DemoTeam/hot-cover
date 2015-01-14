@@ -119,7 +119,8 @@ $("#media_content").on("input", function() {
         }, 1000);
     }
 });
-
+    $("#photo_content").val(sessionStorage.getItem("leechLinks"));
+    sessionStorage.setItem("leechLinks", "")
 </script>
 
 
