@@ -7,7 +7,7 @@ var rateObject = {
             var thisValue = thisObj.children('span').text();
             $.ajax({
                 type: 'POST',
-                url: '/like',
+                url: 'like',
                 dataType:'JSON',
                 data: {post_id: thisItem, like_value: 1},
                 success: function(data){
@@ -30,7 +30,7 @@ var rateObject = {
             var thisValue = thisObj.children('span').text();
             $.ajax({
                 type: 'POST',
-                url: '/disLike',
+                url: 'disLike',
                 dataType:'JSON',
                 data: {post_id: thisItem, like_value: -1},
                 success: function(data){

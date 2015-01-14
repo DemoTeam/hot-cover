@@ -33,6 +33,9 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/star-rating.js') }}"></script>
+
+    <script src="{{ asset('js/like_and_dislike.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-markdown.js') }}"></script>
 </head>
 
 <body>
@@ -114,8 +117,6 @@
 
     <!-- jQuery -->
 
-    <script src="{{ asset('js/like_and_dislike.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-markdown.js') }}"></script>
 
 </body>
 

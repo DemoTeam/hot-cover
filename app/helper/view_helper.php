@@ -7,5 +7,12 @@
             $embed_url = "http://www.youtube.com/embed/" . $sp2[0];
             return $embed_url;
         }
+
+        public static function displayPhoto($urls='') {
+            $arr_photo =  explode("\n", $urls);
+            foreach($arr_photo as $photo) {
+                echo '<img src=' . $photo . ' style="max-width:90%;" /><br/><br />';
+            }
+        }
     }
 ?>

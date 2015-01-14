@@ -21,11 +21,16 @@
           @foreach($posts as $post)
             <div class="row">
                 <div class="col-md-7">
-                    <iframe align="center" width="600px" height="300px" src="{{ViewHelper::convertUrl($post->content)}}"  
+                    @if($post->category == "photo")
+                        {{ ViewHelper::displayPhoto($post->content)  }}
+                    @elseif($post->category == "video")
+                        <iframe align="center" style="width:90%; height:350px"  src="{{ViewHelper::convertUrl($post->content)}}"  
       frameborder="yes" scrolling="yes" name="myIframe" id="myIframe"> </iframe>
+                    @endif
                 </div>
                 <div class="col-md-5">
                     <h3>{{ $post->title }}</h3>
+                    <span>Posted by: {{ $post->user->name }}</span><br />
                     <!-- like -->
                     <div class="rateWrapper"><span class="like rate rateUp" id="{{$post->id}}" data-item="{{$post->id}}">
                     <span class="rateUpN">{{$post->true_likes()->count()}}</span></span>
@@ -36,6 +41,7 @@
                     {{ link_to_route('posts.show', 'View Video', array($post->id), array('class' => 'btn btn-primary')) }}<span class="glyphicon glyphicon-chevron-right"></span>
                 </div>
             </div>
+            <hr>
           @endforeach
         @else
           There are no posts

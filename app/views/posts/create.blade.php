@@ -10,8 +10,8 @@
         <td>
             <div class="col-sm-8">
                 <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-warning">
-                        {{ Form::radio('category', 'photo') }} Photo <br>
+                    <label class="btn btn-warning active">
+                        {{ Form::radio('category', 'photo', 'true') }} Photo <br>
                     </label> 
                     <label class="btn btn-warning">
                         {{ Form::radio('category', 'video') }} Video<br>
@@ -35,26 +35,23 @@
     </tr>
     <tr id="mediaTr" style="display:none;">
         <td>
-                {{ Form::label('media_content', 'Content Url:') }}
+                {{ Form::label('content', 'Content Url:') }}
         </td>
         <td>
             <div class="col-sm-8">
-                {{ Form::text('media_content', '', array('class' => 'form-control')) }}
-
-
-    <div class="wowload fadeInRight" style="margin-top:20px;">
-
-    </div>    
+                {{ Form::text('content', '', array('class' => 'form-control', 'id' => 'media_content')) }}
+                <div class="wowload fadeInRight" style="margin-top:20px;">
+                </div>    
             </div>
         </td>
     </tr>
     <tr id="photoTr">
         <td>
-                {{ Form::label('photo_content', 'Content Url:') }}
+                {{ Form::label('content', 'Content Url:') }}
         </td>
         <td>
             <div class="col-sm-8">
-                {{ Form::textarea('photo_content', '', array('rows' => 8, 'class' => 'form-control')) }}
+                {{ Form::textarea('content', '', array('rows' => 8, 'class' => 'form-control', 'id' => 'photo_content')) }}
             </div>
         </td>
     </tr>
@@ -69,11 +66,12 @@
         </td>
         {{ Form::hidden('user_id', Auth::user()->id) }}
         {{ Form::hidden('rate', 0) }}
+        {{ Form::hidden('type', 'normal') }}
         {{ Form::hidden('status', "New") }}
     </tr>
     <tr>
         <td colspan="2">
-            {{ Form::submit('Submit', array('class' => 'btn btn-primary center-block')) }}
+            {{ Form::submit('Submit', array('class' => 'btn btn-primary center-block', 'id' => 'submit_form')) }}
         </td>
     </tr>
 {{ Form::close() }}
@@ -102,9 +100,13 @@ $("input:radio[name=category]").on("change", function() {
     if($value == "photo") {
         $("#mediaTr").hide();
         $("#photoTr").show();
+        $("#media_content").attr('name', 'remove')
+        $("#photo_content").attr('name', 'content');
     } else {
         $("#mediaTr").show();
         $("#photoTr").hide();
+        $("#photo_content").attr('name', 'remove');
+        $("#media_content").attr('name', 'content')
     }
 });
 
