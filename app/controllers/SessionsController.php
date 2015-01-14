@@ -22,7 +22,7 @@ class SessionsController extends \BaseController {
   public function create()
   {
     if(Auth::check()){
-      return Redirect::to('/posts')->with('message', 'Your are logged in');
+      return Redirect::to('/')->with('message', 'Your are logged in');
     }else{
       return View::make('sessions.create');
     }
