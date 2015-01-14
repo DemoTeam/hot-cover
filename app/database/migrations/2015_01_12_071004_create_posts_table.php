@@ -16,6 +16,8 @@ class CreatePostsTable extends Migration {
        {
           $table->increments('id');
           $table->integer('user_id');
+          $table->string('type'); // 1.normal  2. 18+
+          $table->string('category'); // "photo"   "video"  "music" ...
           $table->string('title');
           $table->text('content');
           $table->text('description');

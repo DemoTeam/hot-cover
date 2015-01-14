@@ -5,6 +5,26 @@
   <table class="table">
     <tr>
         <td>
+            {{ Form::label('category', 'Category:') }}
+        </td>
+        <td>
+            <div class="col-sm-8">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-warning">
+                        {{ Form::radio('category', 'photo') }} Photo <br>
+                    </label> 
+                    <label class="btn btn-warning">
+                        {{ Form::radio('category', 'video') }} Video<br>
+                    </label> 
+                    <label class="btn btn-warning">
+                        {{ Form::radio('category', 'music') }} Music<br>
+                    </label> 
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
             {{ Form::label('title', 'Title:') }}
         </td>
         <td>
@@ -13,13 +33,28 @@
             </div>
         </td>
     </tr>
-    <tr>
+    <tr id="mediaTr" style="display:none;">
         <td>
-                {{ Form::label('content', 'Content Url:') }}
+                {{ Form::label('media_content', 'Content Url:') }}
         </td>
         <td>
             <div class="col-sm-8">
-                {{ Form::text('content', '', array('class' => 'form-control')) }}
+                {{ Form::text('media_content', '', array('class' => 'form-control')) }}
+
+
+    <div class="wowload fadeInRight" style="margin-top:20px;">
+
+    </div>    
+            </div>
+        </td>
+    </tr>
+    <tr id="photoTr">
+        <td>
+                {{ Form::label('photo_content', 'Content Url:') }}
+        </td>
+        <td>
+            <div class="col-sm-8">
+                {{ Form::textarea('photo_content', '', array('rows' => 8, 'class' => 'form-control')) }}
             </div>
         </td>
     </tr>
@@ -48,4 +83,44 @@
     </ul>
 @endif
   </table>
+
+<script>
+
+function getId(url) {
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+
+    if (match && match[2].length == 11) {
+        return match[2];
+    } else {
+        return 'error';
+    }
+}
+
+$("input:radio[name=category]").on("change", function() {
+    $value = $(this).val();
+    if($value == "photo") {
+        $("#mediaTr").hide();
+        $("#photoTr").show();
+    } else {
+        $("#mediaTr").show();
+        $("#photoTr").hide();
+    }
+});
+
+$("#media_content").on("input", function() {
+    $(".wowload").html('<div style="text-align:center;"><img src="http://a.deviantart.net/avatars/l/o/loading-plz.gif?1"></div>');
+    $value = $(this).val(); 
+    $videoId = getId($value);
+    $youtubeUrl = "//www.youtube.com/embed/" + $videoId;
+    if($value.indexOf("youtube.com") != -1) {
+        setTimeout(function(){ 
+            $(".wowload").html('<iframe  class="embed-responsive-item" src=' + $youtubeUrl + ' width="400" height="280" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
+        }, 1000);
+    }
+});
+
+</script>
+
+
 @stop
