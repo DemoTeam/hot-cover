@@ -21,6 +21,8 @@ Route::get('leech_photo', 'PostController@leech_photo');
 Route::resource('sessions', 'SessionsController');
 Route::resource('posts', 'PostController');
 Route::resource('questions', 'QuestionController');
+Route::resource('leech_photos', 'LeechPhotoController');
+
 // like routes
 Route::post('like', 'LikeController@like');
 Route::get('like', 'LikeController@like');

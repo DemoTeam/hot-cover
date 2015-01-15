@@ -69,6 +69,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{Auth::user()->name}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i>{{ link_to_route('leech_photos.index', 'My clipboad') }}</a>
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i>{{ link_to_route('users.show', 'Profile') }}</a>
                         </li>
                         <li>
@@ -116,8 +119,6 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-
-
 </body>
 
 </html>

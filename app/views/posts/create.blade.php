@@ -122,7 +122,6 @@ $("#media_content").on("input", function() {
     }
 });
     $("#photo_content").val(sessionStorage.getItem("leechLinks"));
-    sessionStorage.setItem("leechLinks", "")
 </script>
 
 
