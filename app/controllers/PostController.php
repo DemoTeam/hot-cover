@@ -53,7 +53,11 @@ class PostController extends BaseController {
   public function store()
   {
     $input = Input::all();
-    $validation = Validator::make($input, Post::$rules, Post::$messages);
+    if($input['category'] == 'video') {
+        $validation = Validator::make($input, Post::$rules_video, Post::$messages);
+    } else {
+        $validation = Validator::make($input, Post::$rules);
+    }
 
     if ($validation->passes())
     {

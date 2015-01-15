@@ -16,9 +16,15 @@ class Post extends Eloquent {
         'youtube_url' => 'Wrong youtube Url !',
     );
 
-    public static $rules = array(
+    public static $rules_video = array(
         'title' => 'required|min:1',
         'content'=>'required|youtube_url',
+        'rate'=>'min:0|max:5',
+    );
+
+    public static $rules = array(
+        'title' => 'required|min:1',
+        'content'=>'required',
         'rate'=>'min:0|max:5',
     );
 
