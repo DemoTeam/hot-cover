@@ -25,8 +25,16 @@ class PostController extends BaseController {
     // }
   public function index()
   {
-    $posts = Post::paginate(20);
-    return View::make('posts.index', compact('posts'));
+    $type = Input::get('type');
+    if($type == "photo") {
+        $posts = Post::where('category', 'photo')->orderBy('id', 'desc')->get();
+    } elseif($type == "video") {
+        $posts = Post::where('category', 'video')->orderBy('id', 'desc')->get();
+    } else {
+        $posts = Post::orderBy('id', 'desc')->get();
+    }
+    //$posts = DB::table('posts')->get();
+    return View::make('posts.index', compact('posts', 'type'));
   }
   /**
    * Show the form for creating a new resource.
@@ -45,7 +53,7 @@ class PostController extends BaseController {
   public function store()
   {
     $input = Input::all();
-    $validation = Validator::make($input, Post::$rules);
+    $validation = Validator::make($input, Post::$rules, Post::$messages);
 
     if ($validation->passes())
     {

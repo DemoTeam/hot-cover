@@ -6,7 +6,12 @@
 <div class="row">
 <div class="col-sm-7 col-md-8">
   <div><h2>{{ $post->title}}</h2></div>
-    <iframe  src="{{ViewHelper::convertUrl($post->content)}}" width="100%" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    @if($post->category == "photo")
+                        {{ ViewHelper::displayPhoto($post->content)  }}
+                    @elseif($post->category == "video")
+                        <iframe align="center" style="width:90%; height:350px"  src="{{ViewHelper::convertUrl($post->content)}}"  
+      frameborder="yes" scrolling="yes" name="myIframe" id="myIframe"> </iframe>
+                    @endif
 <hr>
 <!-- like -->
 <div class="rateWrapper"><span class="like rate rateUp" id="{{$post->id}}" data-item="{{$post->id}}">
@@ -18,16 +23,26 @@
 </div>
 <div class="col-sm-5 col-md-4">
 <h3>Related video</h3>
+@if(false)
   @foreach($posts as $p)
     <div class="wowload fadeInRight">
-	<iframe  class="embed-responsive-item" src="{{ViewHelper::convertUrl($post->content)}}" width="200px" height="150" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>		
-	<div>{{ link_to_route('posts.show', $p->title, array($p->id)) }}</div>
+    <iframe  class="embed-responsive-item" src="{{ViewHelper::convertUrl($post->content)}}" width="200px" height="150" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>		
+    <div>{{ link_to_route('posts.show', $p->title, array($p->id)) }}</div>
     </div>    
   @endforeach
+@endif
+
 </div>
 </div>  
 </div>
 </div>
+        <div class="text-right">
+            <a class="btn-default btn back-to-top glyphicon glyphicon-arrow-up" id="backToTopBtn" href="/" title="Top">To top</a>
+        </div>
+        <!-- /.row -->
+
+@if(false)  <!--  TODO -->
+
 <!-- reservation-information -->
 
 <h4>reservation-information</h4>
@@ -89,17 +104,25 @@
     </div>
 </div>
 </div>
+
+@endif
+
+
 <script type="text/javascript">
-    $('#input-rating').on('rating.change', function(event, value, caption) {
-        $.ajax({
-            type: 'PUT',
+$('#input-rating').on('rating.change', function(event, value, caption) {
+    $.ajax({
+        type: 'PUT',
             url: '{{ URL::action("PostController@update", [$post->id]) }}',
             dataType:'JSON',
             data: {rate: value},
             success: function(data){
-              alert("success");
+                alert("success");
             }
-        });
     });
+});
+
+$('#backToTopBtn').click(function(){
+    $('html,body').animate({scrollTop:0},'slow');return false;
+});
 </script>
 @stop

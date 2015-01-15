@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'IndexController@index');
+Route::get('/', array('as' => 'index', 'uses' => 'IndexController@index'));
 Route::resource('users', 'UserController');
 Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');

@@ -17,7 +17,7 @@
 
         <!-- Project One -->
             <div class="row">
-                <div class="text-center">
+                <div class="text-center" style="width:70%">
                    {{ ViewHelper::displayPhoto($leech_photo->content)  }}
                 </div>
             </div>
