@@ -51,12 +51,12 @@ class ViewHelper
                 return $r . ' ' . $str . ($r > 1 ? 's' : '');
             }
         }
-        public static function displaySmallPhoto($urls='') {
-            $arr_photo =  explode("\n", $urls);
-            foreach($arr_photo as $key=>$photo) {
-              echo '<img src=' . $photo . ' style="max-width:20%; heigh:50px" /> ';
-              if ((($key +1) % 4) == 0) {echo "<br>";}
-            }
+    }
+    public static function displaySmallPhoto($urls='') {
+        $arr_photo =  explode("\n", $urls);
+        foreach($arr_photo as $key=>$photo) {
+            echo '<img src=' . $photo . ' style="max-width:20%; heigh:50px" /> ';
+            if ((($key +1) % 4) == 0) {echo "<br>";}
         }
     }
 }

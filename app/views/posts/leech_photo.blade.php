@@ -49,6 +49,7 @@ $("#saveButton").on('click', function(){
     $("#title").val("Leech photo at " + today.toLocaleString());
     $("#photo_content").val($("#photoLinks").val());
     $("#modal_leech_photo").modal('show');
+});
 
 $('#backToTopBtn').click(function(){
     $('html,body').animate({scrollTop:0},'slow');return false;
