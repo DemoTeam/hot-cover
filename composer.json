@@ -10,6 +10,7 @@
 	},
 	"autoload": {
 		"classmap": [
+      "app/validators",
 			"app/commands",
 			"app/controllers",
 			"app/models",

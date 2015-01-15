@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hot videos</title>
+    <link rel="shortcut icon" href="{{ asset('images/site-icon.png') }}"/>
+    <title>Hot cover</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -43,10 +44,15 @@
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
+            <div class="navbar-header">
+                    <a href='{{ URL::route("index") }}'><span class="glyphicon"><img src="{{ asset('images/logo-site.png') }}" style="max-width:45px;"></span></a>
+                </a>
+            </div>
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 {{ link_to_action('IndexController@index', 'Home', array(), array('class' => 'navbar-brand')) }}
             </div>
+
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">

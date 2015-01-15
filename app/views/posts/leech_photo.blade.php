@@ -17,8 +17,14 @@
         </td>
     </tr>
 </table>
+
+<div class="text-right">
+    <a class="btn-default btn back-to-top glyphicon glyphicon-arrow-up" id="backToTopBtn" href="/" title="Top">To top</a>
+</div>
+
 <script>
 $("#saveButton, #shareButton").hide();
+
 $("#leechButton").on("click", function() {
     if ($("#photoLinks").val().length > 0){
         $links = $("#photoLinks").val().split("\n");
@@ -31,16 +37,21 @@ $("#leechButton").on("click", function() {
         alert("Please Insert tour photo links!");
     };
 });
+
 $("#shareButton").on('click', function(){
    $links = $("#photoLinks").val();
    sessionStorage.setItem("leechLinks", $links);
    window.location = "{{URL::action('PostController@create')}}";
 });
+
 $("#saveButton").on('click', function(){
     var today = new Date();
     $("#title").val("Leech photo at " + today.toLocaleString());
     $("#photo_content").val($("#photoLinks").val());
     $("#modal_leech_photo").modal('show');
+
+$('#backToTopBtn').click(function(){
+    $('html,body').animate({scrollTop:0},'slow');return false;
 });
 </script>
 

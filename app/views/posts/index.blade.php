@@ -3,17 +3,32 @@
     <!-- Page Content -->
     <div class="container">
 
+
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Page Heading
-                    <small>Secondary Text</small>
+                <h1 class="page-header">
                     <div class="text-right">
                         {{ link_to_action('PostController@leech_photo', 'Leech photo', array(), array('class' => 'btn btn-success')) }}
                         {{ link_to_action('PostController@create', 'Create new post', array(), array('class' => 'btn btn-primary')) }}
                     </div>
+                </h1>
             </div>
         </div>
+        
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+          <input type="hidden" id="postType" value="{{ $type }}">
+          <div class="btn-group" role="group">
+            {{ link_to_route('posts.index', "All", array("type=all"), array('class' => 'btn btn-default ', 'id' => 'typeAll')) }}
+          </div>
+          <div class="btn-group" role="group">
+            {{ link_to_route('posts.index', "Photo", array("type=photo"), array('class' => 'btn btn-default', 'id' => 'typePhoto')) }}
+          </div>
+          <div class="btn-group" role="group">
+            {{ link_to_route('posts.index', "Video", array("type=video"), array('class' => 'btn btn-default', 'id' => 'typeVideo')) }}
+          </div>
+        </div>
+        <hr>
         <!-- /.row -->
 
         <!-- Project One -->
@@ -22,23 +37,24 @@
             <div class="row">
                 <div class="col-md-7">
                     @if($post->category == "photo")
-                        {{ ViewHelper::displayPhoto($post->content)  }}
+                        {{ ViewHelper::displayOnePhoto($post->content, $post->id)  }}
                     @elseif($post->category == "video")
+{{ViewHelper::convertUrl($post->content)}}
                         <iframe align="center" style="width:90%; height:350px"  src="{{ViewHelper::convertUrl($post->content)}}"  
       frameborder="yes" scrolling="yes" name="myIframe" id="myIframe"> </iframe>
                     @endif
                 </div>
                 <div class="col-md-5">
                     <h3>{{ $post->title }}</h3>
-                    <span>Posted by: {{ $post->user->name }}</span><br />
+                    <h5>Posted {{ViewHelper::time_elapsed_string($post->created_at)}} ago by  <a href="#">{{ $post->user->name }}</a></h5>
                     <!-- like -->
                     <div class="rateWrapper"><span class="like rate rateUp" id="{{$post->id}}" data-item="{{$post->id}}">
                     <span class="rateUpN">{{$post->true_likes()->count()}}</span></span>
                     <span class="disLike rate rateDown" data-item="{{$post->id}}">
-                    <span class="rateDownN">{{$post->disLikes()->count()}}</span></span></div>
+                    <span class="rateDownN">{{$post->disLikes()->count()}}</span></span></div><br />
                     <!-- end like -->
-                    <h5>{{ $post->description }}</h5>
-                    {{ link_to_route('posts.show', 'View Video', array($post->id), array('class' => 'btn btn-primary')) }}<span class="glyphicon glyphicon-chevron-right"></span>
+                    <p>{{ $post->description }}</p>
+                    {{ link_to_route('posts.show', 'View Detail', array($post->id), array('class' => 'btn btn-primary')) }}
                 </div>
             </div>
             <hr>
@@ -46,11 +62,24 @@
         @else
           There are no posts
         @endif
+
+        <div class="text-right">
+            <a class="btn-default btn back-to-top glyphicon glyphicon-arrow-up" id="backToTopBtn" href="/" title="Top">To top</a>
+        </div>
         <!-- /.row -->
 
-        <hr>
+<script>
+$('#backToTopBtn').click(function(){
+    $('html,body').animate({scrollTop:0},'slow');return false;
+});
 
-        <!-- Pagination -->
-        <div style="text-align: center">{{ $posts->links(); }}</div>
-        <!-- /.row -->
+$type = $("#postType").val();
+if($type == "photo") {
+    $("#typePhoto").addClass('btn-warning disabled');
+} else if($type == "video") {
+    $("#typeVideo").addClass('btn-warning disabled');
+} else {
+    $("#typeAll").addClass('btn-warning disabled');
+}
+</script>
 @stop
