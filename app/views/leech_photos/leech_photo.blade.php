@@ -20,16 +20,12 @@
 <script>
 $("#saveButton, #shareButton").hide();
 $("#leechButton").on("click", function() {
-    if ($("#photoLinks").val().length > 0){
-        $links = $("#photoLinks").val().split("\n");
-        $(".appendTr").remove();
-        for(i = 0; i < $links.length; i++) {
-            $('.table tr:last').after('<tr class="appendTr" style="text-align:center;"><td><img style="max-width:70%;" src=' + $links[i] + '></td></tr>');
-        }
-        $("#saveButton, #shareButton").show();
-    }else{
-        alert("Please Insert tour photo links!");
-    };
+    $links = $("#photoLinks").val().split("\n");
+    $(".appendTr").remove();
+    for(i = 0; i < $links.length; i++) {
+        $('.table tr:last').after('<tr class="appendTr" style="text-align:center;"><td><img style="max-width:70%;" src=' + $links[i] + '></td></tr>');
+    }
+    $("#saveButton, #shareButton").show();
 });
 $("#shareButton").on('click', function(){
    $links = $("#photoLinks").val();
@@ -37,8 +33,6 @@ $("#shareButton").on('click', function(){
    window.location = "{{URL::action('PostController@create')}}";
 });
 $("#saveButton").on('click', function(){
-    var today = new Date();
-    $("#title").val("Leech photo at " + today.toLocaleString());
     $("#photo_content").val($("#photoLinks").val());
     $("#modal_leech_photo").modal('show');
 });

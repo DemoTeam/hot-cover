@@ -11,7 +11,7 @@ class Post extends Eloquent {
     }
 
     public static $rules = array(
-      'title' => 'required|min:10',
+      'title' => 'required|min:5',
       'content'=>'required',
       'rate'=>'min:0|max:5',
     );
