@@ -21,6 +21,10 @@ body {
     padding-left: 0;
 }
 
+.huge a {
+  color: #ffffff !important;
+}
+
 #page-wrapper {
     width: 100%;
     padding: 0;

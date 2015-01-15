@@ -2,13 +2,19 @@
 namespace admin;
 use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Controller;
+use Input;
+use Request;
 use \Post as Post;
 class PostController extends BaseAdminController {
 
   public function index()
-  {
-    $posts = Post::paginate(3);
-    return View::make('posts.index', compact('posts'));
+  { 
+    if (Input::get('type') == "New"){
+      $posts = Post::newPosts()->paginate(20);
+    }else{
+      $posts = Post::paginate(20);
+    }
+    return View::make('admins.posts.index', compact('posts'));
   }
   /**
    * Show the form for creating a new resource.
@@ -78,19 +84,25 @@ class PostController extends BaseAdminController {
   public function update($id)
   {
     $input = Input::all();
-    $validation = Validator::make($input, Post::$rules);
-    if ($validation->passes())
-    {
-        $post = Post::find($id);
-        $post->update($input);
-        return Redirect::route('posts.show', $id);
+    if (Request::ajax()) {
+      $post = Post::find($id);
+      $post->status = Input::get('status');
+      $post->update();
+      return json_encode($id);
+    }else{
+      $validation = Validator::make($input, Post::$rules);
+      if ($validation->passes())
+      {
+          $post = Post::find($id);
+          $post->update($input);
+          return Redirect::route('posts.show', $id);
+      }
+      return Redirect::route('posts.edit', $id)
+        ->withInput()
+        ->withErrors($validation)
+        ->with('message', 'There were validation errors.');
+      }
     }
-    return Redirect::route('posts.edit', $id)
-      ->withInput()
-      ->withErrors($validation)
-      ->with('message', 'There were validation errors.');
-    }
-
   /**
    * Remove the specified resource from storage.
    *
