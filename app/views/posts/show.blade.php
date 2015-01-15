@@ -9,8 +9,7 @@
                     @if($post->category == "photo")
                         {{ ViewHelper::displayPhoto($post->content)  }}
                     @elseif($post->category == "video")
-                        <iframe align="center" style="width:90%; height:350px"  src="{{ViewHelper::convertUrl($post->content)}}"  
-      frameborder="yes" scrolling="yes" name="myIframe" id="myIframe"> </iframe>
+                        <iframe align="center" style="width:90%; height:350px"  src="{{ViewHelper::convertUrl($post->content)}}" allowfullscreen frameborder="yes" scrolling="yes" name="myIframe" id="myIframe"> </iframe>
                     @endif
 <hr>
 <!-- like -->
