@@ -2,6 +2,7 @@
 namespace admin;
 use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Controller;
+use Input;
 
 class BaseAdminController extends \BaseController {
   protected $layout = "layouts.admin";

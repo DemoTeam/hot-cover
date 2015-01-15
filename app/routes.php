@@ -31,6 +31,7 @@ Route::post('disLike', 'LikeController@disLike');
 // Route::resource('admin', 'admin\AdminController');
 Route::group(array('prefix' => 'admin'), function() {
   Route::resource('users', 'admin\UserController');
+  Route::resource('posts', 'admin\PostController');
 });
 Route::get('admin', 'admin\AdminController@index');
 

@@ -27,4 +27,8 @@ class Post extends Eloquent {
     public function disLikes(){
       return $this->likes()->where('like_value', '=', '-1');
     }
+    public static function newPosts()
+    {
+      return Post::where('status', '=', 'New');
+    }
 }

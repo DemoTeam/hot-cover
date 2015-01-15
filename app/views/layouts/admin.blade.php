@@ -17,7 +17,14 @@
     <!-- Custom CSS -->
     <link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/star-rating.css') }}" rel="stylesheet">
+        <!-- jQuery -->
+    <script src="{{ asset('js/jquery.js') }}"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="{{ asset('js/star-rating.js') }}"></script>
     <!-- Morris Charts CSS -->
     <!-- <link href="{{ asset('css/plugins/morris.css') }}" rel="stylesheet"> -->
 
@@ -230,7 +237,8 @@
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{Post::all()->count()}}</div>
+                                        <div class="huge">{{link_to_route('admin.posts.index', Post::newPosts()->count(), $parameters = array('type' =>'New'), $attributes = array())}}
+                                        </div>
                                         <div>New Posts!</div>
                                     </div>
                                 </div>
@@ -252,7 +260,7 @@
                                         <i class="fa fa-shopping-cart fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{124}}</div>
+                                        <div class="huge">{{Question::all()->count()}}</div>
                                         <div>New Questions!</div>
                                     </div>
                                 </div>
@@ -274,7 +282,7 @@
                                         <i class="fa fa-support fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">{{13}}</div>
+                                        <div class="huge">{{Answer::all()->count()}}</div>
                                         <div>Admin Answers!</div>
                                     </div>
                                 </div>
@@ -317,14 +325,6 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="{{ asset('js/jquery.js') }}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="{{ asset('js/star-rating.js') }}"></script>
 </body>
 
 </html>
