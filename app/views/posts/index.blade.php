@@ -39,7 +39,6 @@
                     @if($post->category == "photo")
                         {{ ViewHelper::displayOnePhoto($post->content, $post->id)  }}
                     @elseif($post->category == "video")
-{{ViewHelper::convertUrl($post->content)}}
                         <iframe align="center" style="width:90%; height:350px"  src="{{ViewHelper::convertUrl($post->content)}}"  
       frameborder="yes" scrolling="yes" name="myIframe" id="myIframe"> </iframe>
                     @endif
