@@ -78,9 +78,11 @@ class PostController extends BaseController {
    */
   public function show($id)
   {
+    $current_user = Auth::user();
     $post = Post::find($id);
-      $posts = Post::all();
-      return View::make('posts.show', compact(array('post', 'posts')));
+    $posts = Post::all();
+    $comments = $post->comments()->orderBy('id', 'DESC')->get();
+    return View::make('posts.show', compact(array('post', 'posts', 'comments', 'current_user')));
   }
 
   /**

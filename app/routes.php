@@ -27,6 +27,7 @@ Route::resource('leech_photos', 'LeechPhotoController');
 Route::post('like', 'LikeController@like');
 Route::get('like', 'LikeController@like');
 Route::post('disLike', 'LikeController@disLike');
+Route::resource('comments', 'CommentController');
 // Admin routes
 // Route::resource('admin', 'admin\AdminController');
 Route::group(array('prefix' => 'admin'), function() {

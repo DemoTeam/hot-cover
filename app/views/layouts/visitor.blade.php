@@ -37,6 +37,7 @@
 
     <script src="{{ asset('js/like_and_dislike.js') }}"></script>
     <script src="{{ asset('js/bootstrap-markdown.js') }}"></script>
+    <script src="{{ asset('js/jquery.timeago.js') }}"></script>
 </head>
 
 <body>
