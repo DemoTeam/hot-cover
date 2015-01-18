@@ -27,11 +27,11 @@ class PostController extends BaseController {
   {
     $type = Input::get('type');
     if($type == "photo") {
-        $posts = Post::where('category', 'photo')->orderBy('id', 'desc')->get();
+        $posts = Post::where('category', 'photo')->orderBy('id', 'desc')->Paginate(10);
     } elseif($type == "video") {
-        $posts = Post::where('category', 'video')->orderBy('id', 'desc')->get();
+        $posts = Post::where('category', 'video')->orderBy('id', 'desc')->Paginate(2);
     } else {
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = Post::orderBy('id', 'desc')->Paginate(10);
     }
     //$posts = DB::table('posts')->get();
     return View::make('posts.index', compact('posts', 'type'));
@@ -78,11 +78,15 @@ class PostController extends BaseController {
    */
   public function show($id)
   {
+    $per_page = Config::get('constants.SHOW_POST_PER_PAGE');
     $current_user = Auth::user();
+    $avatar = asset($current_user->avatar_url);
+    $current_name = $current_user->name;
     $post = Post::find($id);
     $posts = Post::all();
     $comments = $post->comments()->orderBy('id', 'DESC')->get();
-    return View::make('posts.show', compact(array('post', 'posts', 'comments', 'current_user')));
+    $show_comments = $comments->take($per_page);
+    return View::make('posts.show', compact(array('post', 'posts', 'comments', 'current_user', 'show_comments', 'per_page', 'avatar', 'current_name')));
   }
 
   /**

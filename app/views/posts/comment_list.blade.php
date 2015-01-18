@@ -1,7 +1,7 @@
 <div class="actionBox" style="width:90%;">
     <ul class="commentList">
         <li></li>
-        @foreach($comments as $comment)
+        @foreach($show_comments as $comment)
         <li>
             <div class="commenterImage">
               <img src="{{ asset($comment->user->avatar_url) }}" />
@@ -11,6 +11,7 @@
                 <p class="">{{ nl2br($comment->content) }}</p> <span class="date sub-text">{{ViewHelper::time_elapsed_string($comment->created_at)}} ago</span>
 
             </div>
+            <hr>
         </li>
         @endforeach
     </ul>

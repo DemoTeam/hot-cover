@@ -19,7 +19,7 @@ class ViewHelper
 
     public static function displayOnePhoto($urls='', $post_id) {
         $arr_photo =  explode("\n", $urls);
-        echo '<img src=' . $arr_photo[0] . ' style="max-width:90%;" /><br/><br />';
+        echo '<a href="posts/' . $post_id . '"><img src=' . $arr_photo[0] . ' style="max-width:90%;" /></a><br/><br />';
         if(count($arr_photo) > 1) {
             echo '<div class="col-md-9 text-center">
                 <a href="posts/' . $post_id . '" id="singlebutton" name="singlebutton" class="btn btn-default">View all ' . count($arr_photo)  . ' photos</a>

@@ -34,6 +34,10 @@
     </div>
 </div>
 
+
+<div class="text-center" style="margin-top:10em; text-align:center; position:inherit"><button class="btn btn-info" id="load_more">show more comment </button></div>
+<div class="text-center" style="margin-top:2em; text-align:center; display:none;" id="img_loading"><img style="" src="{{ asset('img/loading.gif') }}"></div>
+
 <div class="text-right">
     <a class="btn-default btn back-to-top glyphicon glyphicon-arrow-up" id="backToTopBtn" href="/" title="Top">To top</a>
 </div>
@@ -71,12 +75,12 @@ function nl2br (str, is_xhtml) {
 }
 
 function comment(content) {
-    $user_name = "{{ $current_user->name }}";
-    $avatar = "{{ asset($current_user->avatar_url) }}";
+    $user_name = "{{ $current_name }}";
+    $avatar = "{{ $avatar }}";
     $time = new Date();
     $timeAgo = jQuery.timeago($time);
     $comment_content = $("#commentContent").val();
-    $(".commentList li:first").before(' <li><div class="commenterImage"><img src=' + $avatar + '></div><div class="commentText"><b style="color:#8b9dc3">' + $user_name + ' </b><p class="commentText">' + nl2br($comment_content) + '</p> <span class="date sub-text">' + $timeAgo + '</span> </div></li> ');
+    $(".commentList li:first").before(' <li><div class="commenterImage"><img src=' + $avatar + '></div><div class="commentText"><b style="color:#8b9dc3">' + $user_name + ' </b><p class="commentText">' + nl2br($comment_content) + '</p> <span class="date sub-text">' + $timeAgo + '</span> </div><hr></li> ');
     $("#commentContent").val('');
     post_id = {{ $post->id }};
     $.ajax({
@@ -88,6 +92,30 @@ function comment(content) {
             }
     });
 }
+
+$(function() {
+    $max_page = {{ round(count($comments) / $per_page) }};
+    post_id = {{ $post->id }};
+    $track_list = 1;
+    $("#load_more").on("click", function() {
+        $(this).hide();
+        $("#img_loading").show();
+        $.ajax({
+            type: 'POST',
+                url: '{{ URL::action("CommentController@loadContent") }}',
+                dataType:'JSON',
+                data: {page: $track_list, post_id: post_id},
+                success: function(data){
+                    $track_list++;
+                    $("#img_loading").hide();
+                    if($track_list <= $max_page) {
+                        $("#load_more").show();
+                    }
+                    $(".commentList li:last").after(data); 
+                }
+        });
+    })
+});
 
 $("#postComment").addClass("disabled");
 
