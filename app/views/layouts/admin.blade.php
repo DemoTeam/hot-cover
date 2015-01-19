@@ -199,6 +199,14 @@
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
+                        <div class="container">
+                        @if (Session::has('message'))
+                            <div class="flash bg-danger alert">
+                                <p>{{ Session::get('message') }}</p>
+                            </div>
+                            @endif
+                            @yield('main')
+                        </div>
                         <h3 class="page-header">
                             Dashboard <small>Admin pages</small>
                         </h3>
@@ -302,14 +310,6 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
-                            <div class="container">
-                            @if (Session::has('message'))
-                                <div class="flash bg-danger alert">
-                                    <p>{{ Session::get('message') }}</p>
-                                </div>
-                                @endif
-                                @yield('main')
-                            </div>
                             @yield('content')
                         </div>
                     </div>

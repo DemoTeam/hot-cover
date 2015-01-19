@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Controller;
 use Input;
 use Request;
+use Redirect;
 use \Post as Post;
 class PostController extends BaseAdminController {
 
@@ -23,7 +24,7 @@ class PostController extends BaseAdminController {
    */
   public function create()
   {
-    return View::make('posts.create');
+    return View::make('admins.posts.create');
   }
   /**
    * Store a newly created resource in storage.
@@ -38,9 +39,9 @@ class PostController extends BaseAdminController {
     if ($validation->passes())
     {
       Post::create($input);
-      return Redirect::route('posts.index');
+      return Redirect::route('admins.posts.index');
     }
-    return Redirect::route('posts.create')
+    return Redirect::route('admins.posts.create')
         ->withInput()
         ->withErrors($validation)
         ->with('message', 'There were validation errors.');
@@ -56,7 +57,7 @@ class PostController extends BaseAdminController {
   {
     $post = Post::find($id);
     $posts = Post::all();
-    return View::make('posts.show', compact(array('post', 'posts')));
+    return View::make('admins.posts.show', compact(array('post', 'posts')));
   }
 
   /**
@@ -70,9 +71,9 @@ class PostController extends BaseAdminController {
         $post = Post::find($id);
         if (is_null($post))
         {
-            return Redirect::route('posts.index');
+            return Redirect::route('admins.posts.index');
         }
-        return View::make('posts.edit', compact('post'));
+        return View::make('admins.posts.edit', compact('post'));
     }
 
   /**
@@ -95,9 +96,9 @@ class PostController extends BaseAdminController {
       {
           $post = Post::find($id);
           $post->update($input);
-          return Redirect::route('posts.show', $id);
+          return Redirect::route('admins.posts.show', $id);
       }
-      return Redirect::route('posts.edit', $id)
+      return Redirect::route('admins.posts.edit', $id)
         ->withInput()
         ->withErrors($validation)
         ->with('message', 'There were validation errors.');
@@ -113,8 +114,8 @@ class PostController extends BaseAdminController {
   {
     $post = Post::find($id);
     $post->delete();
-    return Redirect::route('posts.index')
-      ->with("message", " deleted");
+    return Redirect::route('admin.posts.index')
+      ->with("message", "Deleted");
   }
 }
 

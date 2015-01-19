@@ -38,7 +38,7 @@
 <div class="text-center" style="margin-top:10em; text-align:center; position:inherit"><button class="btn btn-info" id="load_more">show more comment </button></div>
 <div class="text-center" style="margin-top:2em; text-align:center; display:none;" id="img_loading"><img style="" src="{{ asset('img/loading.gif') }}"></div>
 
-<div class="text-right">
+<div class="text-right" id="back-top">
     <a class="btn-default btn back-to-top glyphicon glyphicon-arrow-up" id="backToTopBtn" href="/" title="Top">To top</a>
 </div>
  <!-- /.row -->
@@ -63,10 +63,6 @@ $('#input-rating').on('rating.change', function(event, value, caption) {
                 alert("success");
             }
     });
-});
-
-$('#backToTopBtn').click(function(){
-    $('html,body').animate({scrollTop:0},'slow');return false;
 });
 
 function nl2br (str, is_xhtml) {   

@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +10,7 @@
     <link rel="shortcut icon" href="{{ asset('images/site-icon.png') }}"/>
     <title>Hot cover</title>
 
+    <link href="{{ asset('css/common.css') }}" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/star-rating.css') }}" rel="stylesheet">
@@ -30,12 +29,12 @@
     <![endif]-->
     <!-- jQuery -->
     <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/common.js') }}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/star-rating.js') }}"></script>
-
-    <script src="{{ asset('js/like_and_dislike.js') }}"></script>
+    @include('partials.like_and_dislike')
     <script src="{{ asset('js/bootstrap-markdown.js') }}"></script>
     <script src="{{ asset('js/jquery.timeago.js') }}"></script>
 </head>
