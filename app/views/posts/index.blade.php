@@ -1,3 +1,9 @@
+<style>
+.nav > li > a:hover {
+    background-color: #000000;
+  border-color: #fff;
+}
+</style>
 @extends('layouts.visitor')
 @section('content')
     <!-- Page Content -->
@@ -44,7 +50,7 @@
                     @endif
                 </div>
                 <div class="col-md-5">
-                    <h3>{{ $post->title }}</h3>
+                    <a href='{{ URL::route("posts.show", ["post_id" => $post->id]) }}'><h3>{{ $post->title }}</h3></a>
                     <h5>Posted {{ViewHelper::time_elapsed_string($post->created_at)}} ago by  <a href="#">{{ $post->user->name }}</a></h5>
                     <!-- like -->
                     <div class="rateWrapper"><span class="like rate rateUp" id="{{$post->id}}" data-item="{{$post->id}}">
@@ -53,7 +59,6 @@
                     <span class="rateDownN">{{$post->disLikes()->count()}}</span></span></div><br />
                     <!-- end like -->
                     <p>{{ $post->description }}</p>
-                    {{ link_to_route('posts.show', 'View Detail', array($post->id), array('class' => 'btn btn-primary')) }}
                 </div>
             </div>
             <hr>
@@ -62,7 +67,9 @@
           There are no posts
         @endif
 
-        <div class="text-right">
+        {{ $posts->appends(array('type' => $post->category))->links('pagination.only_next') }}
+
+        <div class="text-right" style="margin-top:2em;">
             <a class="btn-default btn back-to-top glyphicon glyphicon-arrow-up" id="backToTopBtn" href="/" title="Top">To top</a>
         </div>
         <!-- /.row -->

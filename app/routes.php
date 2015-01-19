@@ -28,6 +28,7 @@ Route::post('like', 'LikeController@like');
 Route::get('like', 'LikeController@like');
 Route::post('disLike', 'LikeController@disLike');
 Route::resource('comments', 'CommentController');
+Route::post('load_content', 'CommentController@loadContent');
 // Admin routes
 // Route::resource('admin', 'admin\AdminController');
 Route::group(array('prefix' => 'admin'), function() {
