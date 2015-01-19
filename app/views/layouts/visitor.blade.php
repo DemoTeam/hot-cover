@@ -99,18 +99,17 @@
 
     <!-- Page Content -->
     <div class="container">
-        <div>
-            @if (Session::has('message'))
-                <div class="flash bg-danger alert">
-                    <p>{{ Session::get('message') }}</p>
-                </div>
-            @endif
-        </div>
+        @if (Session::has('message'))
+            <div class="flash bg-danger alert">
+                <p>{{ Session::get('message') }}</p>
+            </div>
+        @endif
+    </div>
+    <div class="container">
         <div>
             @yield('content')
         </div>
-        <hr>
-
+    </div>
         <!-- Footer -->
         <footer>
             <div class="row">
