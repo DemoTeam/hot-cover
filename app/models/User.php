@@ -8,6 +8,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
   protected $guarded = array('id');
   protected $fillable = array('name', 'email', 'password', 'avatar_url');
 
+  public static $rules = array(
+      'name' => 'required|min:5',
+      'email'=>'required|email',
+      'avatar_url'=>'required|image|mimes:jpeg,jpg,png,bmp,gif,svg',
+      'password'=>'required|alpha_num|between:6,12|confirmed',
+      'password_confirmation'=>'required|alpha_num|between:6,12'
+  );
+  use UserTrait, RemindableTrait;
+
+  protected $hidden = array('password', 'remember_token');
+
   public function posts()
   {
       return $this->hasMany('Post', 'user_id');
@@ -28,16 +39,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
       return $this->hasMany('Answer', 'user_id');
   }
 
-  public static $rules = array(
-      'name' => 'required|min:5',
-      'email'=>'required|email',
-      'avatar_url'=>'required|image|mimes:jpeg,jpg,png,bmp,gif,svg',
-      'password'=>'required|alpha_num|between:6,12|confirmed',
-      'password_confirmation'=>'required|alpha_num|between:6,12'
-  );
-  use UserTrait, RemindableTrait;
+  public function likes()
+  {
+      return $this->hasMany('Like', 'user_id');
+  }
 
-  protected $hidden = array('password', 'remember_token');
+  public function countLiked()
+  {
+    return $this->likes()->where('like_value', '=', '1');
+  }
+
+  public function countDisliked()
+  {
+    return $this->likes()->where('like_value', '=', '-1');
+  }
 
   public function getRememberToken()
   {

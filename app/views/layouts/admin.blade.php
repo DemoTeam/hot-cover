@@ -96,13 +96,15 @@
                             <a href="#">
                                 <div class="media">
                                     <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                        <img class="media-object" src="{{Auth::user()->avatar_url}}" alt="" width="55px" heigh="70px">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading"><strong>User name</strong>
+                                        <h5 class="media-heading"><strong>{{Auth::user()->name}}</strong>
                                         </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Joined at {{Auth::user()->created_at->format('Y-m-d');}}</p>
+                                        <p>Total's Posts: {{Auth::user()->posts->count()}} times</p>
+                                        <p>Liked: {{Auth::user()->countLiked->count()}} times</p>
+                                        <p>Disliked: {{Auth::user()->countDisLiked->count()}} times</p>
                                     </div>
                                 </div>
                             </a>

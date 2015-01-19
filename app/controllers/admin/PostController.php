@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Controller;
 use Input;
 use Request;
-use Redirect;
+use Redirect, Validator;
 use \Post as Post;
 class PostController extends BaseAdminController {
 
@@ -96,7 +96,7 @@ class PostController extends BaseAdminController {
       {
           $post = Post::find($id);
           $post->update($input);
-          return Redirect::route('admins.posts.show', $id);
+          return Redirect::route('admin.posts.show', $id);
       }
       return Redirect::route('admins.posts.edit', $id)
         ->withInput()
