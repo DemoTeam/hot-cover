@@ -24,8 +24,10 @@
                     </div>
                 </div>
                 <!-- end like -->
+                @if(isset($current_user))
+                    @include('posts.comment_form')
+                @endif
 
-                @include('posts.comment_form')
                 @include('posts.comment_list')
             </div>
                 @include('posts.related_post')
@@ -34,8 +36,9 @@
     </div>
 </div>
 
-
-<div class="text-center" style="margin-top:10em; text-align:center; position:inherit"><button class="btn btn-info" id="load_more">show more comment </button></div>
+@if(count($comments) > Config::get('constants.SHOW_COMMENT_PER_PAGE'))
+    <div class="text-center" ><button class="btn btn-info" id="load_more">show more comment </button></div>
+@endif
 <div class="text-center" style="margin-top:2em; text-align:center; display:none;" id="img_loading"><img style="" src="{{ asset('img/loading.gif') }}"></div>
 
 <div class="text-right" id="back-top">
@@ -76,7 +79,7 @@ function comment(content) {
     $time = new Date();
     $timeAgo = jQuery.timeago($time);
     $comment_content = $("#commentContent").val();
-    $(".commentList li:first").before(' <li><div class="commenterImage"><img src=' + $avatar + '></div><div class="commentText"><b style="color:#8b9dc3">' + $user_name + ' </b><p class="commentText">' + nl2br($comment_content) + '</p> <span class="date sub-text">' + $timeAgo + '</span> </div><hr></li> ');
+    $("#commentList li:first").before(' <li><div class="commenterImage"><img src=' + $avatar + '></div><div class="commentText"><b style="color:#8b9dc3">' + $user_name + ' </b><p class="commentText">' + nl2br($comment_content) + '</p> <span class="date sub-text">' + $timeAgo + '</span> </div><hr></li> ');
     $("#commentContent").val('');
     post_id = {{ $post->id }};
     $.ajax({
@@ -107,7 +110,7 @@ $(function() {
                     if($track_list <= $max_page) {
                         $("#load_more").show();
                     }
-                    $(".commentList li:last").after(data); 
+                    $("#commentList li:last").after(data); 
                 }
         });
     })

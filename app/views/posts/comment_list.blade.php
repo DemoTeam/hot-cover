@@ -1,5 +1,5 @@
-<div class="actionBox" style="width:90%;">
-    <ul class="commentList">
+<div class="actionBox" style="width:90%; margin-top:2em;">
+    <ul id="commentList" style="list-style-type: none;">
         <li></li>
         @foreach($show_comments as $comment)
         <li>
