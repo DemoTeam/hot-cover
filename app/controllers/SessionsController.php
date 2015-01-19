@@ -37,13 +37,13 @@ class SessionsController extends \BaseController {
   public function store()
   {
     $input = Input::all();
- 
-    $attempt = Auth::attempt( array('email' => $input['email'], 'password' => $input['password']) );
+    $remember = (Input::has('remember')) ? true : false;
+    $attempt = Auth::attempt( array('email' => $input['email'], 'password' => $input['password']), $remember);
     
     if($attempt) {
       return Redirect::to('/');
     } else {
-      return Redirect::to('login');
+      return Redirect::to('login')->with('message', 'Your username/password combination was incorrect.');
     }
   }
  

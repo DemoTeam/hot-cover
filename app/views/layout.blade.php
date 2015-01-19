@@ -57,8 +57,15 @@
 
     <!-- Page Content -->
     <div class="container">
-        @yield('content')
-        <hr>
+        @if (Session::has('message'))
+            <div class="flash bg-danger alert">
+                <p>{{ Session::get('message') }}</p>
+            </div>
+        @endif
+    </div>
+    <div class="container">
+      @yield('content')
+    <hr>
 
         <!-- Footer -->
         <footer>
