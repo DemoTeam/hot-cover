@@ -62,30 +62,28 @@
                 </div>
             </div>
             <hr>
+            {{ $posts->appends(array('type' => $post->category))->links('pagination.only_next') }}
           @endforeach
         @else
           There are no posts
         @endif
 
-        {{ $posts->appends(array('type' => $post->category))->links('pagination.only_next') }}
+        
 
-        <div class="text-right" style="margin-top:2em;">
+        <div id="back-top">
             <a class="btn-default btn back-to-top glyphicon glyphicon-arrow-up" id="backToTopBtn" href="/" title="Top">To top</a>
         </div>
         <!-- /.row -->
-
 <script>
-$('#backToTopBtn').click(function(){
-    $('html,body').animate({scrollTop:0},'slow');return false;
-});
+    sessionStorage.setItem("leechLinks", "");
 
-$type = $("#postType").val();
-if($type == "photo") {
-    $("#typePhoto").addClass('btn-warning disabled');
-} else if($type == "video") {
-    $("#typeVideo").addClass('btn-warning disabled');
-} else {
-    $("#typeAll").addClass('btn-warning disabled');
-}
+    $type = $("#postType").val();
+    if($type == "photo") {
+        $("#typePhoto").addClass('btn-warning disabled');
+    } else if($type == "video") {
+        $("#typeVideo").addClass('btn-warning disabled');
+    } else {
+        $("#typeAll").addClass('btn-warning disabled');
+    }
 </script>
 @stop

@@ -17,7 +17,7 @@
           @else
             <td>{{$post->content}}</td>
           @endif
-          <td><div class="btn btn-info glyphicon {{$post->type == 'photo' ? 'glyphicon-picture' : 'glyphicon-facetime-video' }}"> {{ $post->category }}</div></td>
+          <td><div class="btn btn-info glyphicon {{$post->category == 'photo' ? 'glyphicon-picture' : 'glyphicon-facetime-video' }}"> {{ $post->category }}</div></td>
           <td id="td_label_{{$post->id}}">{{ $post->status }}</td>
           <td id="td_status_{{$post->id}}">
             <div class="btn btn-info approve" id="approve_{{$post->id}}" data-id="{{$post->id}}" style="display:{{$post->status=='Decline' ? 'none' : ''}}">Approve</div>
@@ -25,7 +25,7 @@
           </td>
           <td>{{ link_to_route('admin.posts.show', 'Detail', array($post->id), array('class' => 'btn btn-primary'))}}</td>
           <td>
-            {{ Form::open(array('method' => 'DELETE', 'route' => array('admin.users.destroy', $post->id))) }} 
+            {{ Form::open(array('method' => 'DELETE', 'route' => array('admin.posts.destroy', $post->id))) }} 
             {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }} 
             {{ Form::close() }}
           </td>
@@ -80,6 +80,5 @@
         statusObj.approve($('.approve'));
         statusObj.decline($('.decline'));
     });
-
   </script>
 @stop
