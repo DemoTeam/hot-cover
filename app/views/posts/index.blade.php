@@ -16,7 +16,9 @@
                 <h1 class="page-header">
                     <div class="text-right">
                         {{ link_to_action('PostController@leech_photo', 'Leech photo', array(), array('class' => 'btn btn-success')) }}
-                        {{ link_to_action('PostController@create', 'Create new post', array(), array('class' => 'btn btn-primary')) }}
+                        @if(isset($current_user))
+                            {{ link_to_action('PostController@create', 'Create new post', array(), array('class' => 'btn btn-primary')) }}
+                        @endif
                     </div>
                 </h1>
             </div>

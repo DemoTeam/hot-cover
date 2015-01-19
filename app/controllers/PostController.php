@@ -5,6 +5,7 @@ class PostController extends BaseController {
      $this->beforeFilter('csrf', array('on'=>'post'));
      $this->beforeFilter('auth', array('only'=>array('create', 'edit', 'store')));
      $this->beforeFilter('correctUser:Post',array('only'=>array('edit')));
+     $this->current_user = Auth::user();
    }
     /*
     |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ class PostController extends BaseController {
         $posts = Post::orderBy('id', 'desc')->Paginate(10);
     }
     //$posts = DB::table('posts')->get();
+    View::share('current_user', $this->current_user);
     return View::make('posts.index', compact('posts', 'type'));
   }
   /**
@@ -43,7 +45,9 @@ class PostController extends BaseController {
    */
   public function create()
   {
-    return View::make('posts.create');
+    $category_session =  Session::get('category');
+    $category = isset($category_session) ? (string)$category_session : "false";
+    return View::make('posts.create', compact('category'));
   }
   /**
    * Store a newly created resource in storage.
@@ -66,6 +70,7 @@ class PostController extends BaseController {
     }
     return Redirect::route('posts.create')
         ->withInput()
+        ->with('category', $input['category'])
         ->withErrors($validation)
         ->with('message', 'There were validation errors.');
   }
@@ -79,13 +84,16 @@ class PostController extends BaseController {
   public function show($id)
   {
     $per_page = Config::get('constants.SHOW_POST_PER_PAGE');
-    $current_user = Auth::user();
-    $avatar = asset($current_user->avatar_url);
-    $current_name = $current_user->name;
+    $avatar = $current_name = "";
+    if(isset($this->current_user)) {
+        $avatar = asset($this->current_user->avatar_url);
+        $current_name = $this->current_user->name;
+    }
     $post = Post::find($id);
     $posts = Post::all();
     $comments = $post->comments()->orderBy('id', 'DESC')->get();
     $show_comments = $comments->take($per_page);
+    View::share('current_user', $this->current_user);
     return View::make('posts.show', compact(array('post', 'posts', 'comments', 'current_user', 'show_comments', 'per_page', 'avatar', 'current_name')));
   }
 
@@ -149,6 +157,7 @@ class PostController extends BaseController {
 
   public function leech_photo()
   {
+    View::share('current_user', $this->current_user);
     return View::make('posts.leech_photo');
   }
 }
