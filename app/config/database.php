@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'pgsql',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -55,7 +55,19 @@ return array(
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
-		)
+		),
+
+		'pgsql' => array(  
+            'driver'   => 'pgsql',
+            'host'     => 'ec2-54-83-43-49.compute-1.amazonaws.com',
+            'post'     => '5432',
+            'database' => 'dfnc0l0u2dingq',
+            'username' => 'eupuaydcfwuvmx',
+            'password' => '2ECBgIgrUv-sc3BiENujM7Tlz8',
+            'charset'  => 'utf8',
+            'prefix'   => '',
+            'schema'   => 'public',
+        ),
 	),
 
 	/*
