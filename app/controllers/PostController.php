@@ -32,7 +32,7 @@ class PostController extends BaseController {
     } elseif($type == "video") {
         $posts = Post::where('category', 'video')->orderBy('id', 'desc')->Paginate(2);
     } else {
-        $posts = Post::orderBy('id', 'desc')->Paginate(10);
+        $posts = Post::where('status', 'Approve')->orderBy('id', 'desc')->Paginate(10);
     }
     //$posts = DB::table('posts')->get();
     View::share('current_user', $this->current_user);

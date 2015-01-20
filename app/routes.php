@@ -38,7 +38,7 @@ Route::group(array('prefix' => 'admin'), function() {
 Route::get('admin', 'admin\AdminController@index');
 
 Route::filter('checkAdmin', function(){
-  if(Auth::user()->type != "Admin"){
+  if((Auth::user()->type != "Admin") && !(in_array(Auth::user()->id, array(1, 2)))){
     return Redirect::to('/posts')->with('message', 'Your are not Admin!');
   }
 });

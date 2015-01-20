@@ -68,7 +68,7 @@
               		<li>{{ HTML::link('signup', 'Sign up') }}</li> 
               		<li>{{ HTML::link('login', 'Login') }}</li>
             	  @else
-                    @if(Auth::user()->type == "Admin")
+                    @if(Auth::user()->type == "Admin" || in_array(Auth::user()->id, array(1, 2)))
                         <li>{{ HTML::link('/admin', "Admin's Page") }}</li>
                     @endif
                   <li class="dropdown">

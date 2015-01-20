@@ -64,8 +64,8 @@
                 </div>
             </div>
             <hr>
-            {{ $posts->appends(array('type' => $post->category))->links('pagination.only_next') }}
           @endforeach
+        {{ $posts->appends(array('type' => $post->category))->links('pagination.only_next') }}
         @else
           There are no posts
         @endif
