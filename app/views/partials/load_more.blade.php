@@ -1,5 +1,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
+    $("#other_content").hide();
     var track_load =3; //total loaded record group(s)
     var loading  = false; //to prevents multipal ajax loads
     var total_groups = <?php echo $total_groups; ?>; //total record group(s)
@@ -15,6 +16,7 @@ $(document).ready(function() {
             
             if(track_load < total_groups && loading==false) //there's more data to load
             {
+                $("#img_loading").show();
                 loading = true; //prevent further ajax loading
                 
                 $.get('{{URL::action("PostController@show", [$post->id])}}',{'group_no': track_load}, function(data){
@@ -22,6 +24,7 @@ $(document).ready(function() {
 
                     track_load++; //loaded group increment
                     loading = false; 
+                    $("#img_loading").hide();
                 
                 }).fail(function(xhr, ajaxOptions, thrownError) { //any errors?
                     
@@ -30,6 +33,7 @@ $(document).ready(function() {
                 });
                 
             }else{
+                $("#img_loading").hide();
                 $("#other_content").show();
             }
         }
