@@ -6,7 +6,7 @@ use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface {
   protected $guarded = array('id');
-  protected $fillable = array('name', 'email', 'password', 'avatar_url');
+  protected $fillable = array('name', 'email', 'password', 'avatar_url', 'status');
 
   public static $rules = array(
       'name' => 'required|min:5',
@@ -14,6 +14,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
       'avatar_url'=>'required|image|mimes:jpeg,jpg,png,bmp,gif,svg',
       'password'=>'required|alpha_num|between:6,12|confirmed',
       'password_confirmation'=>'required|alpha_num|between:6,12'
+  );
+  public static $update_rules = array(
+      'name' => 'required|min:5',
+      'email'=>'required|email',
+      'avatar_url'=>'image|mimes:jpeg,jpg,png,bmp,gif,svg',
+      'password'=>'alpha_num|between:6,12|confirmed',
+      'password_confirmation'=>'alpha_num|between:6,12'
   );
   use UserTrait, RemindableTrait;
 

@@ -11,13 +11,13 @@
         <td>
             <div class="col-sm-8">
                 <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-warning active">
+                    <label class="btn btn-warning active" id="labelPhoto">
                         {{ Form::radio('category', 'photo', $post->category == 'photo') }} Photo <br>
                     </label> 
-                    <label class="btn btn-warning">
+                    <label class="btn btn-warning" id="labelVideo">
                         {{ Form::radio('category', 'video', $post->category == 'video') }} Video<br>
                     </label> 
-                    <label class="btn btn-warning">
+                    <label class="btn btn-warning" id="labelMusic">
                         {{ Form::radio('category', 'music', $post->category == 'music') }} Music<br>
                     </label> 
                 </div>
@@ -100,7 +100,15 @@
   </table>
 
 <script>
-
+    $category = "{{ $post->category }}";
+    if($category == "video") {
+        $("#labelVideo").addClass('active');
+        $("#labelPhoto").removeClass('active');
+        $("#labelPhoto").addClass('disabled');
+        $("#labelMusic").addClass('disabled');
+        $("#mediaTr").show();
+        $("#photoTr").hide();
+    }
     function getId(url) {
         var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var match = url.match(regExp);

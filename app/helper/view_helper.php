@@ -28,6 +28,11 @@ class ViewHelper
         }
     }
 
+    public static function displayJustOnePhoto($urls='', $post_id) {
+        $arr_photo =  explode("\n", $urls);
+        echo '<a href="posts/' . $post_id . '"><img src=' . $arr_photo[0] . ' style="max-width:90%;" /></a><br/><br />';
+    }
+
     public static function time_elapsed_string($ptime) {
         $time = strtotime($ptime->toDateTimeString());
         $etime = time() - $time;

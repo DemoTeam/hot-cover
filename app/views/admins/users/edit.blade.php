@@ -1,15 +1,17 @@
 @extends('layouts.admin')
-<h1>Create User</h1>
 @section('content')
+<h3>Edit User</h3>
 {{ Form::model($user, array('method' => 'PATCH', 'route' =>
- array('users.update', $user->id))) }}
+ array('admin.users.update', $user->id))) }}
   <table class="table">
     <tr>
         <td>
             {{ Form::label('name', 'Name:') }}
         </td>
         <td>
-            {{ Form::text('name') }}
+            <div class="col-sm-8">
+            {{ Form::text('name', $user->name, array('class' => 'form-control')) }}
+            </div>
         </td>
     </tr>
     <tr>
@@ -17,7 +19,29 @@
             {{ Form::label('email', 'Email:') }}
         </td>
         <td>
-            {{ Form::text('email') }}
+            <div class="col-sm-8">
+                {{ Form::text('email', $user->email, array('class' => 'form-control')) }}
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {{ Form::label('type', 'Type:') }}
+        </td>
+        <td>
+            <div class="col-sm-8">
+                {{ Form::select('type', array('Visitor'=>'Visitor', 'Boxae'=>'Boxae', 'Admin'=>'Admin'),$user->type, array('class' => 'form-control')) }}
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {{ Form::label('status', 'Status:') }}
+        </td>
+        <td>
+            <div class="col-sm-8">
+                {{ Form::select('status', array('Nomal'=>'Nomal', 'Ban'=>'Ban'),$user->status, array('class' => 'form-control')) }}
+            </div>
         </td>
     </tr>
     <tr>
@@ -25,7 +49,9 @@
             {{ Form::label('password', 'Password:') }}
         </td>
         <td>
-            {{ Form::password('password') }}
+            <div class="col-sm-8">
+                {{ Form::text('password','', array('class' => 'form-control')) }}
+            </div>
         </td>
     </tr>
     <tr>
@@ -33,12 +59,14 @@
             {{ Form::label('password_confirmation', 'Password confirmation:') }}
         </td>
         <td>
-            {{ Form::password('password_confirmation') }}
+            <div class="col-sm-8">
+                {{ Form::text('password_confirmation','', array('class' => 'form-control')) }}
+            </div>
         </td>
     </tr>
     <tr>
         <td colspan="2">
-            {{ Form::submit('Submit', array('class' => 'btn')) }}
+            {{ Form::submit('Submit', array('class' => 'btn btn-primary center-block', 'id' => 'submit_form')) }}
         </td>
     </tr>
 {{ Form::close() }}

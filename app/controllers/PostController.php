@@ -90,7 +90,7 @@ class PostController extends BaseController {
         $current_name = $this->current_user->name;
     }
     $post = Post::find($id);
-    $posts = Post::all();
+    $posts = Post::all()->take(3);
     $comments = $post->comments()->orderBy('id', 'DESC')->get();
     $show_comments = $comments->take($per_page);
     View::share('current_user', $this->current_user);

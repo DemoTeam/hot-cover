@@ -3,10 +3,11 @@ namespace admin;
 use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Controller;
 use \User as User;
+use Input, Validator, Redirect, Hash;
 class UserController extends BaseAdminController {
   public function index()
   {
-    $users = User::paginate(2);
+    $users = User::paginate(20);
     return View::make('admins/users.index', compact('users'));
   }
   /**
@@ -78,15 +79,15 @@ class UserController extends BaseAdminController {
   public function update($id)
   {
     $input = Input::all();
-    $validation = Validator::make($input, User::$rules);
+    $validation = Validator::make($input, User::$update_rules);
     if ($validation->passes())
     {
         $user = User::find($id);
         $user->password = Hash::make(Input::get('password'));
         $user->update($input);
-        return Redirect::route('admins/users.show', $id);
+        return Redirect::route('admin.users.show', $id);
     }
-    return Redirect::route('admins/users.edit', $id)
+    return Redirect::route('admin.users.edit', $id)
       ->withInput()
       ->withErrors($validation)
       ->with('message', 'There were validation errors.');

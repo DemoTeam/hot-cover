@@ -6,11 +6,15 @@
     <table class="table table-bordered table-striped" width="80%">
       <th>Name</th>
       <th>Email</th>
+      <th>Type</th>
+      <th>Status</th>
       <th colspan="3">Action</th>
       @foreach($users as $user)
         <tr>
           <td>{{ $user->email }}</td>
           <td>{{ $user->name }}</td>
+          <td>{{ $user->type }}</td>
+          <td>{{ $user->status }}</td>
           <td>{{ link_to_route('admin.users.show', 'Detail', array($user->id), array('class' => 'btn btn-info')) }}</td>
           <td>{{ link_to_route('admin.users.edit', 'Edit', array($user->id), array('class' => 'btn btn-info')) }}</td>
           <td>

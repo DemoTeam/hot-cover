@@ -6,6 +6,7 @@
       <th>Content</th>
       <th>Category</th>
       <th>Status</th>
+      <th>Author</th>
       <th colspan="2">Action</th>
       @foreach($posts as $post)
         <tr>
@@ -19,6 +20,8 @@
           @endif
           <td><div class="btn btn-info glyphicon {{$post->category == 'photo' ? 'glyphicon-picture' : 'glyphicon-facetime-video' }}"> {{ $post->category }}</div></td>
           <td id="td_label_{{$post->id}}">{{ $post->status }}</td>
+          <td>{{ link_to_route('admin.users.show', $post->user->name, array($post->user->id), array('class' => ''))}}
+          </td>
           <td id="td_status_{{$post->id}}">
             <div class="btn btn-info approve" id="approve_{{$post->id}}" data-id="{{$post->id}}" style="display:{{$post->status=='Decline' ? 'none' : ''}}">Approve</div>
             <div class="btn btn-warning decline" id="decline_{{$post->id}}" data-id="{{$post->id}}" style="display:{{$post->status=='Approve' ? 'none' : ''}}">Decline</div>
