@@ -1,12 +1,13 @@
 <div class="col-sm-5 col-md-4">
-<h3>Related video</h3>
+<h3>Related posts</h3>
 @if(false)
   @foreach($posts as $p)
-    <div class="wowload fadeInRight">
-    <iframe  class="embed-responsive-item" src="{{ViewHelper::convertUrl($post->content)}}" width="200px" height="150" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>		
-    <div>{{ link_to_route('posts.show', $p->title, array($p->id)) }}</div>
-    </div>    
+    @if($post->category == "photo")
+        {{ ViewHelper::displayJustOnePhoto($post->content, $post->id)  }}
+    @elseif($post->category == "video")
+        <iframe align="center" style="width:90%; height:350px"  src="{{ViewHelper::convertUrl($post->content)}}"  
+      frameborder="yes" scrolling="yes" name="myIframe" id="myIframe"> </iframe>
+    @endif    
   @endforeach
 @endif
-
 </div>
