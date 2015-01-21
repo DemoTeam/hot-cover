@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <!-- end like -->
-                <div id="other_content" style="display:none;">
+                <div id="other_content">
                     @if(isset($current_user))
                         @include('posts.comment_form')
                     @endif
@@ -44,7 +44,10 @@
 @if(count($comments) > Config::get('constants.SHOW_COMMENT_PER_PAGE'))
     <div class="text-center" ><button class="btn btn-info" id="load_more">show more comment </button></div>
 @endif
+<!--
 <div class="text-center" style="margin-top:2em; text-align:center; display:none;" id="img_loading"><img style="" src="{{ asset('img/loading.gif') }}"></div>
+-->
+<div class="text-center" style="margin-top:2em; text-align:center; display:none;" id="img_loading"><img style="" src="http://www.nasa.gov/multimedia/videogallery/ajax-loader.gif"></div>
 
 <div class="text-right" id="back-top">
     <a class="btn-default btn back-to-top glyphicon glyphicon-arrow-up" id="backToTopBtn" href="/" title="Top">To top</a>
