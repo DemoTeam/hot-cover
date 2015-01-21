@@ -11,7 +11,7 @@ class PostController extends BaseAdminController {
   public function index()
   { 
     if (Input::get('type') == "New"){
-      $posts = Post::newPosts()->paginate(20);
+      $posts = Post::newPosts()->paginate(3);
     }else{
       $posts = Post::paginate(20);
     }

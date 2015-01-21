@@ -91,10 +91,21 @@ class PostController extends BaseController {
     }
     $post = Post::find($id);
     $posts = Post::all()->take(3);
-    $comments = $post->comments()->orderBy('id', 'DESC')->get();
-    $show_comments = $comments->take($per_page);
-    View::share('current_user', $this->current_user);
-    return View::make('posts.show', compact(array('post', 'posts', 'comments', 'current_user', 'show_comments', 'per_page', 'avatar', 'current_name')));
+    $total_record = count(explode("\n", $post->content));
+    $total_groups = $total_record;
+    if (Request::ajax()) {
+      if ((int)Input::get('group_no') < $total_record) {
+        $data = ViewHelper::displayOnePhotobyIndex($post->content, (int)Input::get('group_no'));
+        return json_encode($data);
+      }
+    }else{
+      $comments = $post->comments()->orderBy('id', 'DESC')->get();
+      $show_comments = $comments->take($per_page);
+      View::share('current_user', $this->current_user);
+      return View::make('posts.show', compact(array('post',
+       'posts', 'comments', 'current_user', 'show_comments',
+        'per_page', 'avatar', 'current_name','total_groups')));
+    }
   }
 
   /**
