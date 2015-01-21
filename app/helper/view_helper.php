@@ -17,6 +17,19 @@ class ViewHelper
         }
     }
 
+    public static function displayPhotobyImgNumber($urls='', $img_num) {
+        $arr_photo =  explode("\n", $urls);
+        $n = count($arr_photo) > $img_num ? $img_num : count($arr_photo); 
+        for ($i=0; $i < $n; $i++) { 
+            echo '<img src=' . $arr_photo[$i] . ' style="max-width:90%;" /><br/><br />';
+        }
+    }
+
+    public static function displayOnePhotobyIndex($urls='', $i){
+        $arr_photo =  explode("\n", $urls);
+        echo '<img src=' . $arr_photo[$i] . ' style="max-width:90%;" /><br/><br />';
+    }
+
     public static function displayOnePhoto($urls='', $post_id) {
         $arr_photo =  explode("\n", $urls);
         echo '<a href="posts/' . $post_id . '"><img src=' . $arr_photo[0] . ' style="max-width:90%;" /></a><br/><br />';

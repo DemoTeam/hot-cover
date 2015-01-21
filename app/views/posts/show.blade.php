@@ -12,11 +12,13 @@
             <div class="col-sm-7 col-md-8">
                 <div><h2>{{ $post->title}}</h2></div>
                   <h5>Posted {{ViewHelper::time_elapsed_string($post->created_at)}} ago by {{ link_to_route('users.show', $post->user->name, array($post->user->id), array('class' => ''))}}</a></h5>
+                  <div id="content-div">
                     @if($post->category == "photo")
-                        {{ ViewHelper::displayPhoto($post->content)  }}
+                        {{ ViewHelper::displayPhotobyImgNumber($post->content, 3)  }}
                     @elseif($post->category == "video")
                         <iframe align="center" style="width:90%; height:400px"  src="{{ViewHelper::convertUrl($post->content)}}" allowfullscreen frameborder="yes" scrolling="yes" name="myIframe" id="myIframe"> </iframe>
                     @endif
+                  </div>
                 <!-- like -->
                 <div class="text-right" style="margin-top:1em;">
                     <div class="rateWrapper" style=""><span class="like rate rateUp" id="{{$post->id}}" data-item="{{$post->id}}">
@@ -25,11 +27,13 @@
                     </div>
                 </div>
                 <!-- end like -->
-                @if(isset($current_user))
-                    @include('posts.comment_form')
-                @endif
+                <div id="other_content" style="display:none;">
+                    @if(isset($current_user))
+                        @include('posts.comment_form')
+                    @endif
 
-                @include('posts.comment_list')
+                    @include('posts.comment_list')
+                </div>
             </div>
                 @include('posts.related_post')
         </div>
@@ -48,7 +52,9 @@
  <!-- /.row -->
 
 @include('posts.reservation_information')
-
+@if($post->category == "photo")
+  @include('partials.load_more')
+@endif
 
 <script type="text/javascript">
 
