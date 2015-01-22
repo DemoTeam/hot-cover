@@ -75,6 +75,8 @@
         <div id="back-top">
             <a class="btn-default btn back-to-top glyphicon glyphicon-arrow-up" id="backToTopBtn" href="/" title="Top">To top</a>
         </div>
+        <h3 class="text-right">qr code for this page</h3>
+        <div id="qr_code"></div>
         <!-- /.row -->
 <script>
     sessionStorage.setItem("leechLinks", "");
@@ -88,4 +90,12 @@
         $("#typeAll").addClass('btn-warning disabled');
     }
 </script>
+<style type="text/css">
+    #qr_code canvas {
+        width: 100px;
+    }
+    #qr_code{
+        text-align: right;
+    }
+</style>
 @stop

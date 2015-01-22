@@ -14,7 +14,10 @@
             </div>
         </div>
         <!-- /.row -->
-
+        <div class="qr_container text-right">
+            <h3 class="">qr code for this page</h3>
+            <div id="qr_code"></div>
+        </div>
         <!-- Project One -->
             <div class="row">
                 <div class="text-center" style="width:70%">
@@ -27,3 +30,9 @@
         <hr>
         <!-- /.row -->
 @stop
+<style type="text/css">
+    .qr_container {
+        position: fixed;
+        margin-left: 800px;
+    }
+</style>

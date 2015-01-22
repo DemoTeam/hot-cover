@@ -30,11 +30,13 @@
     <!-- jQuery -->
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/common.js') }}"></script>
+    <script src="{{ asset('js/jquery.qrcode-0.11.0.min.js') }}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/star-rating.js') }}"></script>
     @include('partials.like_and_dislike')
+    @include('partials.qr_code')
     <script src="{{ asset('js/bootstrap-markdown.js') }}"></script>
     <script src="{{ asset('js/jquery.timeago.js') }}"></script>
 </head>
