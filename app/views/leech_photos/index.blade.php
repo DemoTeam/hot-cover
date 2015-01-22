@@ -34,6 +34,8 @@
         @else
           There are no posts
         @endif
+        <h3>qr code for this page</h3>
+        <div id="qr_code"></div>
         <!-- /.row -->
         <hr>
 
