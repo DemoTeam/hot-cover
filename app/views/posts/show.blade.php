@@ -1,6 +1,6 @@
 @extends('layouts.visitor')
 @section('content')
-
+@include('partials.modal_warning_qr_code')
 <head>
     <link href="{{ asset('css/facebook_post.css') }}" rel="stylesheet">
     <link href="{{ asset('css/comment_box.css') }}" rel="stylesheet">
@@ -62,6 +62,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+    $("#modal_warning_qr_code").modal('show');
     $('.status').click(function() { $('.arrow').css("left", 0);});
     $('.photos').click(function() { $('.arrow').css("left", 146);});
 });
