@@ -77,6 +77,8 @@
         </div>
         <h3 class="text-right">qr code for this page</h3>
         <div id="qr_code"></div>
+
+        
         <!-- /.row -->
 <script>
     sessionStorage.setItem("leechLinks", "");
