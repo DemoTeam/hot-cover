@@ -68,7 +68,7 @@ class PostController extends BaseController {
       $post = Post::create($input);
       $count_view = [];
       $count_view["post_id"] = $post["id"];
-      $count_view["count"] = 0;
+      $count_view["total_view"] = 0;
       CountView::create($count_view);
 
       return Redirect::route('posts.index');
@@ -91,7 +91,7 @@ class PostController extends BaseController {
     $post = Post::find($id);
 
     $count_view = CountView::where('post_id', $id)->first();
-    $count_view->increment('count');
+    $count_view->increment('total_view');
 
     $per_page = Config::get('constants.SHOW_POST_PER_PAGE');
     $avatar = $current_name = "";

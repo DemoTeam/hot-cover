@@ -1,7 +1,5 @@
 <?php
-
 class Post extends Eloquent {
-
 
     protected $guarded = array('id');
     protected $fillable = array('title', 'content', 'description', 'rate',
@@ -17,9 +15,9 @@ class Post extends Eloquent {
         return $this->hasMany('Comment', 'post_id');
     }
 
-    public function count_view()
+    public function countview()
     {
-        return $this->hasOne('CountView', 'post_id');
+        return $this->hasOne('CountView')->first();
     }
 
     public static $messages = array(
@@ -41,6 +39,11 @@ class Post extends Eloquent {
     public function likes()
     {
         return $this->hasMany('Like', 'post_id');
+    }
+
+    public function total_views()
+    {
+        return $this->countview()->total_view;
     }
 
     public function true_likes(){
