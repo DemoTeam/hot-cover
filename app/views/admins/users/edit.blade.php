@@ -50,7 +50,7 @@
         </td>
         <td>
             <div class="col-sm-8">
-                {{ Form::text('password','', array('class' => 'form-control')) }}
+                {{ Form::password('password','', array('class' => 'form-control')) }}
             </div>
         </td>
     </tr>
@@ -60,7 +60,7 @@
         </td>
         <td>
             <div class="col-sm-8">
-                {{ Form::text('password_confirmation','', array('class' => 'form-control')) }}
+                {{ Form::password('password_confirmation','', array('class' => 'form-control')) }}
             </div>
         </td>
     </tr>

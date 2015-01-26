@@ -83,7 +83,7 @@ class UserController extends BaseAdminController {
     if ($validation->passes())
     {
         $user = User::find($id);
-        $user->password = Hash::make(Input::get('password'));
+        $input['password'] = Hash::make(Input::get('password'));
         $user->update($input);
         return Redirect::route('admin.users.show', $id);
     }
