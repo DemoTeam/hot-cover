@@ -16,7 +16,7 @@ class CreateCountViewsTable extends Migration {
        {
           $table->increments('id');
           $table->integer('post_id')->unique();
-          $table->integer('count'); // "photo"   "video"  "music" ...
+          $table->integer('total_view'); // "photo"   "video"  "music" ...
           $table->timestamps();
        });
 		//

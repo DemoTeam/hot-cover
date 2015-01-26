@@ -14,7 +14,7 @@
             <div class="col-sm-7 col-md-8">
                 <div><h2>{{ $post->title}}</h2></div>
                   <h5>Posted {{ViewHelper::time_elapsed_string($post->created_at)}} ago by {{ link_to_route('users.show', $post->user->name, array($post->user->id), array('class' => ''))}}</a></h5>
-                  <span>{{ $post->count_view()->count() }} Views</span>
+                  <span>{{ $post->total_views() }} Views</span>
                   <div id="content-div">
                     @if($post->category == "photo")
                         {{ ViewHelper::displayPhotobyImgNumber($post->content, 3)  }}

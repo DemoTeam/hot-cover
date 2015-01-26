@@ -6,7 +6,7 @@ class CountViewController extends BaseController {
     $alls = Post::all();
     foreach($alls as $post) { 
         $count_view["post_id"] = $post->id; 
-        $count_view["count"] = 0;
+        $count_view["total_view"] = 0;
         $a = CountView::create($count_view);
     }
     return json_encode($count_view);
