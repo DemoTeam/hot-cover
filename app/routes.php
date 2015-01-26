@@ -35,6 +35,13 @@ Route::group(array('prefix' => 'admin'), function() {
   Route::resource('users', 'admin\UserController');
   Route::resource('posts', 'admin\PostController');
 });
+
+Route::group(array('prefix' => 'api'), function() {
+  Route::group(array('prefix' => 'v1'), function() {
+    Route::resource('posts', 'api\v1\PostController');
+  });
+});
+
 Route::get('admin', 'admin\AdminController@index');
 
 Route::filter('checkAdmin', function(){
