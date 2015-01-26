@@ -65,7 +65,12 @@ class PostController extends BaseController {
 
     if ($validation->passes())
     {
-      Post::create($input);
+      $post = Post::create($input);
+      $count_view = [];
+      $count_view["post_id"] = $post["id"];
+      $count_view["count"] = 0;
+      CountView::create($count_view);
+
       return Redirect::route('posts.index');
     }
     return Redirect::route('posts.create')
@@ -83,13 +88,17 @@ class PostController extends BaseController {
    */
   public function show($id)
   {
+    $post = Post::find($id);
+
+    $count_view = CountView::where('post_id', $id)->first();
+    $count_view->increment('count');
+
     $per_page = Config::get('constants.SHOW_POST_PER_PAGE');
     $avatar = $current_name = "";
     if(isset($this->current_user)) {
         $avatar = asset($this->current_user->avatar_url);
         $current_name = $this->current_user->name;
     }
-    $post = Post::find($id);
     $posts = Post::all()->take(3);
     $total_record = count(explode("\n", $post->content));
     $total_groups = $total_record;
