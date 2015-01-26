@@ -22,6 +22,7 @@ Route::resource('sessions', 'SessionsController');
 Route::resource('posts', 'PostController');
 Route::resource('questions', 'QuestionController');
 Route::resource('leech_photos', 'LeechPhotoController');
+Route::get('dump_view', array('as' => 'dump_view', 'uses' => 'CountViewController@dump_view'));
 
 // like routes
 Route::post('like', 'LikeController@like');

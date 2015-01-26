@@ -17,6 +17,11 @@ class Post extends Eloquent {
         return $this->hasMany('Comment', 'post_id');
     }
 
+    public function count_view()
+    {
+        return $this->hasOne('CountView', 'post_id');
+    }
+
     public static $messages = array(
         'youtube_url' => 'Wrong youtube Url !',
     );

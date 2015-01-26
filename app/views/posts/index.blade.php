@@ -54,6 +54,7 @@
                 <div class="col-md-5">
                     <a href='{{ URL::route("posts.show", ["post_id" => $post->id]) }}'><h3>{{ $post->title }}</h3></a>
                     <h5>Posted {{ViewHelper::time_elapsed_string($post->created_at)}} ago by  <a href="#">{{ $post->user->name }}</a></h5>
+                    <span>{{ $post->count_view()->count() }} Views</span>
                     <!-- like -->
                     <div class="rateWrapper"><span class="like rate rateUp" id="{{$post->id}}" data-item="{{$post->id}}">
                     <span class="rateUpN">{{$post->true_likes()->count()}}</span></span>
@@ -64,8 +65,8 @@
                 </div>
             </div>
             <hr>
-            {{ $posts->appends(array('type' => $post->category))->links('pagination.only_next') }}
           @endforeach
+          {{ $posts->appends(array('type' => $post->category))->links('pagination.only_next') }}
         @else
           There are no posts
         @endif
