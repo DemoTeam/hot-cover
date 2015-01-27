@@ -90,9 +90,6 @@ class PostController extends BaseController {
   {
     $post = Post::find($id);
 
-    $count_view = CountView::where('post_id', $id)->first();
-    $count_view->increment('total_view');
-
     $per_page = Config::get('constants.SHOW_POST_PER_PAGE');
     $avatar = $current_name = "";
     if(isset($this->current_user)) {
@@ -108,6 +105,8 @@ class PostController extends BaseController {
         return json_encode($data);
       }
     }else{
+      $count_view = CountView::where('post_id', $id)->first();
+      $count_view->increment('total_view');
       $comments = $post->comments()->orderBy('id', 'DESC')->get();
       $show_comments = $comments->take($per_page);
       View::share('current_user', $this->current_user);
