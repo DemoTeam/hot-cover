@@ -9,7 +9,7 @@ $(document).ready(function() {
     }    
     $(window).scroll(function() { //detect page scroll
         
-        if($(window).scrollTop() + $(window).height() == $(document).height())  //user scrolled to bottom of the page?
+        if($(window).scrollTop() + $(window).height() >= $(document).height()-150)  //user scrolled to bottom of the page?
         {
             
             if(track_load < total_groups && loading==false) //there's more data to load
