@@ -6,9 +6,7 @@ $(document).ready(function() {
     var total_groups = <?php echo $total_groups; ?>; //total record group(s)
     if(track_load >= total_groups){
         $("#other_content").show();
-    }
-    $('#content-div').load('{{URL::action("PostController@show", [$post->id])}}', {'page':track_load}, function() {track_load++;}); //load first group
-    
+    }    
     $(window).scroll(function() { //detect page scroll
         
         if($(window).scrollTop() + $(window).height() == $(document).height())  //user scrolled to bottom of the page?
