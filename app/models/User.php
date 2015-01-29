@@ -8,10 +8,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
   protected $guarded = array('id');
   protected $fillable = array('name', 'email', 'password', 'avatar_url', 'status', 'type');
 
+  use UserTrait, RemindableTrait;
+
   public static $rules = array(
       'name' => 'required|min:5',
       'email'=>'required|email',
-      'avatar_url'=>'required|image|mimes:jpeg,jpg,png,bmp,gif,svg',
       'password'=>'required|alpha_num|between:6,12|confirmed',
       'password_confirmation'=>'required|alpha_num|between:6,12'
   );
@@ -22,7 +23,27 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
       'password'=>'alpha_num|between:6,12|confirmed',
       'password_confirmation'=>'alpha_num|between:6,12'
   );
-  use UserTrait, RemindableTrait;
+
+  public static function authRules($field)
+  {
+      $validations = [
+          'username' => 'required|min:3|max:50',
+          'email' => 'required|email|max:50',
+      ];
+      return [
+          $field => $validations[$field],
+          'password' => 'required|max:50',
+      ];
+  }
+
+  public static function validate($input, $field)
+  {
+      $user = [
+          $field => $input[$field],
+          'password' => $input['password'],
+      ];
+      return Auth::validate($user);
+  }
 
   protected $hidden = array('password', 'remember_token');
 
@@ -53,12 +74,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
   public function countLiked()
   {
-    return $this->likes()->where('like_value', '=', '1');
+      return $this->likes()->where('like_value', '=', '1');
   }
 
   public function countDisliked()
   {
-    return $this->likes()->where('like_value', '=', '-1');
+      return $this->likes()->where('like_value', '=', '-1');
   }
 
   public function getRememberToken()

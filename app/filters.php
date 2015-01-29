@@ -43,6 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
+            Session::set('return_url', Request::path());
 			return Redirect::guest('login');
 		}
 	}

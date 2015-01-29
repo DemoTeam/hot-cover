@@ -23,6 +23,7 @@
                     {{ Form::submit('Login', array('class' => 'btn btn-lg btn-info btn-block')) }}
                     
                     {{ HTML::link('signup', 'Register', array('class' => 'btn btn-lg btn-success btn-block')) }}
+                    <a class="btn btn-lg btn-primary btn-block" href="{{ URL::action('SocialsController@getFacebook') }}"><img style="width:30px;height:30px;padding:0" src={{asset('img/facebook.png')}}> Sign in with Facebook </a>
                 {{ Form::close() }}
             </div>
         </div>
