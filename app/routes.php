@@ -43,3 +43,4 @@ Route::filter('checkAdmin', function(){
     return Redirect::to('/posts')->with('message', 'Your are not Admin!');
   }
 });
+Route::controller('socials', 'SocialsController');

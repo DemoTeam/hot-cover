@@ -3,7 +3,7 @@
 class PostController extends BaseController {
    public function __construct() {
      $this->beforeFilter('csrf', array('on'=>'post'));
-     $this->beforeFilter('auth', array('only'=>array('create', 'edit', 'store')));
+     $this->beforeFilter('auth', array('only'=>array('create', 'edit', 'store', 'show')));
      $this->beforeFilter('correctUser:Post',array('only'=>array('edit')));
      $this->current_user = Auth::user();
    }
