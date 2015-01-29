@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommentsTable extends Migration {
+class CreateCountViewsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,11 @@ class CreateCommentsTable extends Migration {
 	 */
 	public function up()
 	{
-    Schema::create('comments', function($table)
+    Schema::create('count_views', function($table)
        {
           $table->increments('id');
-          $table->integer('user_id');
-          $table->integer('post_id'); // "photo"   "video"  "music" ...
-          $table->text('content');
+          $table->integer('post_id')->unique();
+          $table->integer('total_view'); // "photo"   "video"  "music" ...
           $table->timestamps();
        });
 		//
@@ -30,7 +29,7 @@ class CreateCommentsTable extends Migration {
 	 */
 	public function down()
 	{
-    Schema::drop('comments');
+    Schema::drop('count_views');
 		//
 	}
 
