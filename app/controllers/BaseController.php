@@ -7,6 +7,10 @@ class BaseController extends Controller {
 	 *
 	 * @return void
 	 */
+	public function __construct() {
+        //$this->beforeFilter('csrf', array('on'=>'post'));
+        $this->beforeFilter('auth.basic');
+    }
 	protected function setupLayout()
 	{
 		if ( ! is_null($this->layout))
