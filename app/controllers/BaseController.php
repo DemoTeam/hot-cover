@@ -9,7 +9,7 @@ class BaseController extends Controller {
 	 */
 	public function __construct() {
         //$this->beforeFilter('csrf', array('on'=>'post'));
-        $this->beforeFilter('auth.basic');
+        $this->beforeFilter('auth.customize');
     }
 	protected function setupLayout()
 	{

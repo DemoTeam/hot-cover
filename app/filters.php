@@ -55,6 +55,17 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+Route::filter('auth.customize', function ($route, $request) {
+    $user = $request->getUser();
+    $password = $request->getPassword();
+    if ($user == 'box-ae' && $password == 'battu')
+    {
+        return;
+    }
+    $headers = array('WWW-Authenticate' => 'Basic');
+    return new  \Symfony\Component\HttpFoundation\Response('Invalid credentials.', 401, $headers);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Guest Filter
